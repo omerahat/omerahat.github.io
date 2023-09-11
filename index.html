@@ -3,56 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ÖMER AHAT</title>
+    <title>University Dining Hall Menu Subscription</title>
     <style>
         body {
-            background-color: #062603;
-            color: white;
             font-family: Arial, sans-serif;
             text-align: center;
-            margin: 0;
-            padding: 0;
         }
-
-        header {
-            padding: 20px;
+        h1 {
+            color: #333;
         }
-
-        article {
-            padding: 20px;
-            margin: 20px auto;
+        .container {
             max-width: 600px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+            margin: 0 auto;
+            padding: 20px;
         }
-
-        img {
-            max-width: 100%;
-            border-radius: 10px;
+        #qrcode {
             margin-top: 20px;
         }
-                
-        #small-photo {
-            height: 400px;
-        }
-
-        
-        #small-photo {
-            width: auto;
-        }
-
     </style>
 </head>
 <body>
-    <header>
-        <h1>ÖMER AHAT</h1>
-    </header>
-    <article>
-        <p>
-            Merhaba ben Ömer Ahat.
-        </p>
-    </article>
-    <img src="kaliteye hoşgelsiniz.png" alt="Your Photo" id="small-photo">
-
+    <div class="container">
+        <h1>Subscribe to University Dining Hall Menu</h1>
+        <p>Enter your email below to receive the latest updates on the dining hall menu:</p>
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSddQZs6ozCyWIe34lq8nPf2AyYUBg1qMIUCNYAcWZWO_sa2bg/viewform" target="_blank">
+            <input type="email" name="email" placeholder="Enter your email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        <div id="qrcode">
+            <p>Scan the QR code to access the form:</p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://docs.google.com/forms/d/e/1FAIpQLSddQZs6ozCyWIe34lq8nPf2AyYUBg1qMIUCNYAcWZWO_sa2bg/viewform" alt="QR Code">
+        </div>
+    </div>
 </body>
 </html>
