@@ -3,34 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sub Test</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-        }
-        h1 {
-            color: #333;
-        }
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        #qrcode {
-            margin-top: 20px;
-        }
-    </style>
+    <title>Subscribe to Our Newsletter</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header class="header">
+        <h1 class="header__title">🚀 Stay Ahead, Subscribe Now! 🚀</h1>
+    </header>
     <div class="container">
-        <h1>Subscribe to</h1>
-        <p>Enter your email below:</p>
-        <form action="https://script.google.com/macros/s/AKfycbyRC2deSRfdero_0HokyjBhZ-Jx9V-Z-2oBejd8L0jq6Z327Yq_mGVnZd8T33AmDBye/exec" method="post">
-            <input type="email" name="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-          </form>
-          
+        <p class="container__intro">Be part of the future. Subscribe to our newsletter for exclusive updates:</p>
+        <form action="https://script.google.com/macros/s/AKfycbyRC2deSRfdero_0HokyjBhZ-Jx9V-Z-2oBejd8L0jq6Z327Yq_mGVnZd8T33AmDBye/exec" method="post" class="subscribe-form">
+            <div class="input-group">
+                <input type="email" id="email" name="email" placeholder="Your email" class="subscribe-form__input" required>
+                <button type="submit" class="subscribe-form__button">Get on Board</button>
+            </div>
+        </form>
     </div>
+    <footer class="footer">
+        <p class="footer__text">🌟 &copy; 2023 Artistic Creations. All Rights Brushed. 🌟</p>
+    </footer>
 </body>
 </html>
