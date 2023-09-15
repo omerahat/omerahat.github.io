@@ -1,0 +1,96 @@
+/* styles.css */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: radial-gradient(circle, #000000 0%, #1f2041 100%);
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    min-height: 100vh;
+}
+
+.header {
+    background-color: transparent;
+    text-align: center;
+    padding: 60px 0 30px;
+}
+
+.header__title {
+    font-size: 36px;
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.container__intro {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+
+
+.subscribe-form__button,
+.unsubscribe-form__button {
+    padding: 15px 25px;
+    border: none;
+    border-radius: 25px;
+    font-size: 16px;
+    outline: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    color: #fff;
+}
+
+.subscribe-form__button:hover,
+.unsubscribe-form__button:hover {
+    filter: brightness(1.2); /* Improve button hover effect */
+}
+
+.footer {
+    background-color: transparent;
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.footer__text {
+    font-size: 14px;
+}
+/* Add these styles for larger screens */
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; /* Add some space between buttons */}
+
+.subscribe-form__button,
+.unsubscribe-form__button {
+    width: 40%; /* Reduce the button width */
+    padding: 10px 20px; /* Adjust padding for smaller buttons */
+    background-color: transparent; /* Set background color to transparent */
+    color: #fff; /* Text color */
+    border: 2px solid #fff; /* Add a white border */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Smooth transition */
+}
+
+.subscribe-form__button:hover,
+.unsubscribe-form__button:hover {
+    background-color: #ff5363; /* Change background color on hover */
+    color: #000; /* Change text color on hover */
+}
+
+
+/* styles.css */
