@@ -69,15 +69,15 @@ body {
 }
 
 .subscribe-form__button {
-    background-color: #ff5363;
-    color: #fff;
+    background-color: rgba(0, 0, 0, 0.2);
     padding: 15px 25px;
-    border: none;
+    border: 3px;
+    border-color: #ffffff;
     border-radius: 25px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     font-size: 16px;
-    outline: none;
+    outline: none;
 }
 
 .subscribe-form__button:hover {

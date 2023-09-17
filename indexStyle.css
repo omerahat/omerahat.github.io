@@ -74,7 +74,7 @@ body {
 .button-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px; /* Add some space between buttons */}
+    margin-top: 25px; /* Add some space between buttons */}
 
 .subscribe-form__button,
 .unsubscribe-form__button {
