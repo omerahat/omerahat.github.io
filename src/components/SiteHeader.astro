@@ -1,0 +1,234 @@
+---
+import { profile } from '../data/profile';
+
+const navItems = [
+  { label: 'Work', href: '#work' },
+  { label: 'Experience', href: '#experience' },
+  { label: 'Writing', href: '#writing' },
+  { label: 'About', href: '#about' },
+  { label: 'Contact', href: '#contact' },
+] as const;
+
+const homeHref = import.meta.env.BASE_URL;
+---
+
+<header class="site-header" data-menu-open="false" data-site-header>
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href={homeHref} aria-label={`${profile.name} home`}>
+      <span class="site-header__mark" aria-hidden="true">ÖA</span>
+      <span>{profile.name}</span>
+    </a>
+
+    <button
+      class="site-header__menu-toggle"
+      type="button"
+      aria-controls="site-navigation"
+      aria-expanded="false"
+      data-menu-toggle
+    >
+      <span data-menu-label>Open menu</span>
+      <span class="site-header__menu-icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+      </span>
+    </button>
+
+    <nav id="site-navigation" class="site-header__navigation" aria-label="Primary navigation">
+      <ul>
+        {navItems.map((item) => (
+          <li><a href={item.href}>{item.label}</a></li>
+        ))}
+        <li>
+          <a class="site-header__resume-link" href={profile.resumeRequestHref}>Request the resume</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const siteHeader = document.querySelector<HTMLElement>('[data-site-header]');
+  const menuToggle = siteHeader?.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const navigation = siteHeader?.querySelector<HTMLElement>('#site-navigation');
+  const menuLabel = menuToggle?.querySelector<HTMLElement>('[data-menu-label]');
+
+  if (siteHeader && menuToggle && navigation && menuLabel) {
+    const setMenuOpen = (isOpen: boolean) => {
+      siteHeader.dataset.menuOpen = String(isOpen);
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+      menuLabel.textContent = isOpen ? 'Close menu' : 'Open menu';
+    };
+
+    menuToggle.addEventListener('click', () => {
+      setMenuOpen(siteHeader.dataset.menuOpen !== 'true');
+    });
+
+    navigation.addEventListener('click', (event) => {
+      if (event.target instanceof Element && event.target.closest('a')) {
+        setMenuOpen(false);
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && siteHeader.dataset.menuOpen === 'true') {
+        setMenuOpen(false);
+        menuToggle.focus();
+      }
+    });
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    z-index: 20;
+    top: 0;
+    border-bottom: 1px solid var(--color-line);
+    background: rgb(255 247 230 / 0.94);
+    backdrop-filter: blur(0.75rem);
+  }
+
+  .site-header__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 5.5rem;
+    gap: 2rem;
+  }
+
+  .site-header__brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--color-ink);
+    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+
+  .site-header__brand:hover {
+    color: var(--color-ink);
+  }
+
+  .site-header__mark {
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    place-items: center;
+    border: 2px solid var(--color-ink);
+    border-radius: 0.75rem 0.75rem 0.75rem 0.2rem;
+    background: var(--color-yellow);
+    box-shadow: 0.25rem 0.25rem 0 var(--color-ink);
+    font-size: 0.8rem;
+    line-height: 1;
+    transform: rotate(-5deg);
+  }
+
+  .site-header__navigation ul {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2vw, 1.75rem);
+  }
+
+  .site-header__navigation a {
+    display: inline-block;
+    padding-block: 0.35rem;
+    color: var(--color-ink);
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .site-header__navigation a:hover {
+    color: var(--color-orange);
+  }
+
+  .site-header__resume-link {
+    padding: 0.7rem 1rem !important;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--pill-radius);
+    background: var(--color-yellow);
+    box-shadow: 0.2rem 0.2rem 0 var(--color-ink);
+  }
+
+  .site-header__resume-link:hover {
+    color: var(--color-ink) !important;
+    background: var(--color-coral);
+    transform: translate(-0.1rem, -0.1rem);
+  }
+
+  .site-header__menu-toggle {
+    display: none;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 0.8rem;
+    border: 2px solid var(--color-ink);
+    border-radius: var(--pill-radius);
+    background: var(--color-white);
+    font-size: 0.85rem;
+    font-weight: 750;
+  }
+
+  .site-header__menu-icon {
+    display: grid;
+    gap: 0.25rem;
+  }
+
+  .site-header__menu-icon span {
+    display: block;
+    width: 1.1rem;
+    height: 2px;
+    background: currentColor;
+  }
+
+  @media (max-width: 48rem) {
+    .site-header__inner {
+      min-height: 4.75rem;
+      gap: 0.75rem;
+    }
+
+    .site-header__menu-toggle {
+      display: inline-flex;
+    }
+
+    .site-header__navigation {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      right: 0;
+      left: 0;
+      display: none;
+      padding: 0.75rem;
+      border: 2px solid var(--color-ink);
+      border-radius: 1rem;
+      background: var(--color-white);
+      box-shadow: 0.35rem 0.35rem 0 var(--color-ink);
+    }
+
+    .site-header[data-menu-open='true'] .site-header__navigation {
+      display: block;
+    }
+
+    .site-header__navigation ul {
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .site-header__navigation a {
+      display: block;
+      padding: 0.7rem 0.75rem;
+      border-radius: 0.6rem;
+    }
+
+    .site-header__navigation a:hover {
+      background: var(--color-paper);
+    }
+
+    .site-header__resume-link {
+      margin-top: 0.45rem;
+      text-align: center;
+    }
+  }
+</style>

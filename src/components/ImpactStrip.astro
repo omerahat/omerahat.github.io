@@ -1,0 +1,93 @@
+---
+import { profile } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="impact" class="impact-strip section" aria-labelledby="impact-title">
+  <div class="container">
+    <SectionHeading headingId="impact-title" eyebrow="Impact" title="Proof, in numbers" />
+
+    <ul class="impact-strip__grid">
+      {profile.impactMetrics.map((metric, index) => (
+        <li class:list={['impact-strip__metric', `impact-strip__metric--${index + 1}`]}>
+          <p class="impact-strip__value">{metric.value}</p>
+          <div>
+            <p class="impact-strip__label">{metric.label}</p>
+            <p class="impact-strip__context">{metric.context}</p>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .impact-strip {
+    border-block: 1px solid var(--color-ink);
+    background: var(--color-yellow);
+  }
+
+  .impact-strip__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-top: 2.5rem;
+    border-top: 2px solid var(--color-ink);
+  }
+
+  .impact-strip__metric {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: start;
+    gap: 1rem;
+    min-width: 0;
+    padding: 1.5rem clamp(1rem, 3vw, 2rem) 0;
+    border-right: 1px solid rgb(26 26 26 / 0.35);
+  }
+
+  .impact-strip__metric:first-child {
+    padding-left: 0;
+  }
+
+  .impact-strip__metric:last-child {
+    border-right: 0;
+  }
+
+  .impact-strip__value {
+    color: var(--color-orange);
+    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif;
+    font-size: clamp(2.75rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.07em;
+    line-height: 0.9;
+  }
+
+  .impact-strip__label {
+    font-weight: 800;
+    line-height: 1.2;
+    text-transform: capitalize;
+  }
+
+  .impact-strip__context {
+    margin-top: 0.45rem;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+    line-height: 1.35;
+  }
+
+  @media (max-width: 48rem) {
+    .impact-strip__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .impact-strip__metric,
+    .impact-strip__metric:first-child {
+      padding: 1.25rem 0;
+      border-right: 0;
+      border-bottom: 1px solid rgb(26 26 26 / 0.35);
+    }
+
+    .impact-strip__metric:last-child {
+      border-bottom: 0;
+    }
+  }
+</style>

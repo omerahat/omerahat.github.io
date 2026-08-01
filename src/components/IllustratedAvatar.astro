@@ -1,0 +1,49 @@
+---
+import { profile } from '../data/profile';
+
+interface Props {
+  label?: string;
+}
+
+const { label = `Illustrated avatar of ${profile.name}` } = Astro.props;
+---
+
+<svg
+  class="illustrated-avatar"
+  viewBox="0 0 420 480"
+  role="img"
+  aria-labelledby="illustrated-avatar-title illustrated-avatar-description"
+  focusable="false"
+>
+  <title id="illustrated-avatar-title">{label}</title>
+  <desc id="illustrated-avatar-description">
+    A geometric portrait made from warm paper, orange, coral, and yellow shapes.
+  </desc>
+
+  <rect width="420" height="480" rx="44" fill="var(--color-yellow)" />
+  <path d="M0 330 116 250l84 70 74-55 146 105v110H0Z" fill="var(--color-coral)" />
+  <path d="m0 420 110-78 76 54 98-98 136 84v98H0Z" fill="var(--color-orange)" opacity="0.86" />
+  <circle cx="332" cy="90" r="42" fill="var(--color-paper)" />
+  <circle cx="332" cy="90" r="12" fill="var(--color-ink)" />
+
+  <path d="M104 206c0-76 49-125 108-125s108 49 108 125v50c0 67-48 121-108 121s-108-54-108-121v-50Z" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="8" />
+  <path d="M101 211c4-88 47-139 113-139 56 0 101 37 111 108-32-24-55-46-77-79-35 49-82 79-147 110Z" fill="var(--color-ink)" />
+  <path d="M145 231c22 15 44 22 68 22s47-7 70-22" fill="none" stroke="var(--color-ink)" stroke-linecap="round" stroke-width="8" />
+  <circle cx="175" cy="204" r="7" fill="var(--color-ink)" />
+  <circle cx="245" cy="204" r="7" fill="var(--color-ink)" />
+  <path d="M204 220c-2 15-1 25 9 29" fill="none" stroke="var(--color-ink)" stroke-linecap="round" stroke-width="6" />
+  <path d="M164 335v-35h96v35c0 14-10 25-24 25h-48c-14 0-24-11-24-25Z" fill="var(--color-paper)" stroke="var(--color-ink)" stroke-width="8" />
+  <path d="M85 480c8-82 44-123 127-123s119 41 127 123H85Z" fill="var(--color-ink)" />
+  <path d="m153 379 59 53 59-53c32 16 52 46 59 101H94c7-55 27-85 59-101Z" fill="var(--color-orange)" />
+  <path d="m212 432 26-28-26-25-26 25 26 28Z" fill="var(--color-yellow)" />
+  <path d="M66 116h35M83 98v36M300 300h42M321 279v42" stroke="var(--color-ink)" stroke-linecap="round" stroke-width="7" />
+</svg>
+
+<style>
+  .illustrated-avatar {
+    display: block;
+    width: min(100%, 26rem);
+    height: auto;
+    overflow: visible;
+  }
+</style>
