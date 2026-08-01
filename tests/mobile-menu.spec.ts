@@ -102,6 +102,33 @@ test('homepage removes nonessential motion when reduced motion is requested', as
   expect(motionStyles.scrollBehavior).toBe('auto');
 });
 
+test('homepage limits interactive transitions to transform and opacity', async ({ page }) => {
+  await page.goto('/');
+
+  const disallowedTransitions = await page.locator('a, button').evaluateAll((elements) => {
+    const allowedTransitions = new Set(['none', 'opacity', 'transform']);
+
+    return elements.flatMap((element) => {
+      const style = getComputedStyle(element);
+      const hasTransitionDuration = style.transitionDuration
+        .split(',')
+        .some((duration) => Number.parseFloat(duration) > 0);
+
+      if (!hasTransitionDuration) {
+        return [];
+      }
+
+      const properties = style.transitionProperty.split(',').map((property) => property.trim());
+
+      return properties
+        .filter((property) => !allowedTransitions.has(property))
+        .map((property) => `${element.tagName.toLowerCase()}: ${property}`);
+    });
+  });
+
+  expect(disallowedTransitions).toEqual([]);
+});
+
 test('homepage exposes a visible keyboard focus indicator', async ({ page }) => {
   await page.goto('/');
   await page.keyboard.press('Tab');
