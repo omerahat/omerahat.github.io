@@ -210,6 +210,7 @@ hr {
     var(--color-coral) 92%,
     transparent 92%
   );
+  color: var(--color-ink);
 }
 
 .highlight-orange,

@@ -4,7 +4,7 @@
   <path d="M1010 0h190v250c-58-27-115-76-190-146V0Z" fill="#e76f51"/>
   <path d="M0 520c160-58 252-50 390 25 111 60 226 65 362 13 143-55 287-52 448 26v46H0v-90Z" fill="#ffd166"/>
 
-  <g fill="#e8590c" font-family="Arial, Helvetica, sans-serif" font-weight="700">
+  <g fill="#b84300" font-family="Arial, Helvetica, sans-serif" font-weight="700">
     <text x="86" y="96" font-size="24" letter-spacing="4">AI ENGINEER / EXPLAINABLE ML</text>
   </g>
 
@@ -20,6 +20,6 @@
   <g transform="translate(1014 352)">
     <rect width="106" height="106" rx="28" fill="#1a1a1a"/>
     <circle cx="42" cy="53" r="23" fill="none" stroke="#ffd166" stroke-width="9"/>
-    <path d="m61 78 18-50h12L73 78H61Z" fill="#e8590c"/>
+    <path d="m61 78 18-50h12L73 78H61Z" fill="#b84300"/>
   </g>
 </svg>
