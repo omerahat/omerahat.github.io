@@ -40,7 +40,12 @@ const renderedExperiences = await Promise.all(
               </div>
               <div class="experience__meta">
                 {experience.data.current && <span class="experience__current">Current</span>}
-                <time>{experience.data.period}</time>
+                <time itemprop="startDate" datetime={experience.data.startDate}>
+                  {experience.data.period}
+                </time>
+                {experience.data.endDate && (
+                  <meta itemprop="endDate" content={experience.data.endDate} />
+                )}
                 {experience.data.location && <span>{experience.data.location}</span>}
               </div>
             </header>

@@ -2,6 +2,7 @@
 company: "Turknet"
 role: "AI Engineer Intern"
 period: "April 2026 - Present"
+startDate: "2026-04-01"
 location: "Ankara, Türkiye"
 current: true
 focus:

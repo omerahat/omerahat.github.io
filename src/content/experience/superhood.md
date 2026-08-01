@@ -2,6 +2,8 @@
 company: "Superhood Oy"
 role: "Full Stack ML Intern (Erasmus+)"
 period: "July 2025 - September 2025"
+startDate: "2025-07-01"
+endDate: "2025-09-30"
 location: "Helsinki, Finland"
 current: false
 focus:

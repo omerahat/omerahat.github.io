@@ -2,6 +2,8 @@
 company: "YetGen"
 role: "Participant, Young Talents Program"
 period: "April 2023 - June 2023"
+startDate: "2023-04-01"
+endDate: "2023-06-30"
 current: false
 focus:
   - "Leadership"

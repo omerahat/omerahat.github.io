@@ -2,6 +2,8 @@
 company: "ASELSAN"
 role: "Student Trainee"
 period: "March 2024 - June 2024"
+startDate: "2024-03-01"
+endDate: "2024-06-30"
 current: false
 focus:
   - "Leadership"

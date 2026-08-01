@@ -61,3 +61,23 @@ test('project cards expose verified external links and no fabricated XPRS link',
 
   await expect(xprsCard.getByRole('link')).toHaveCount(0);
 });
+
+test('experience timeline exposes machine-readable start and end dates', async ({ page }) => {
+  await page.goto('/');
+
+  const experience = page.locator('#experience');
+  const turknet = experience.getByRole('article').filter({
+    has: page.getByRole('heading', { name: 'AI Engineer Intern', exact: true }),
+  });
+  const superhood = experience.getByRole('article').filter({
+    has: page.getByRole('heading', { name: 'Full Stack ML Intern (Erasmus+)', exact: true }),
+  });
+
+  await expect(turknet.locator('time')).toHaveAttribute('datetime', '2026-04-01');
+  await expect(turknet.locator('time')).toHaveText('April 2026 - Present');
+  await expect(superhood.locator('time')).toHaveAttribute('datetime', '2025-07-01');
+  await expect(superhood.locator('meta[itemprop="endDate"]')).toHaveAttribute(
+    'content',
+    '2025-09-30',
+  );
+});

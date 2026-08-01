@@ -2,6 +2,8 @@
 company: "FIZGET"
 role: "Machine Learning Developer"
 period: "December 2022 - March 2023"
+startDate: "2022-12-01"
+endDate: "2023-03-31"
 location: "Ankara, Türkiye"
 current: false
 focus:
