@@ -1,0 +1,140 @@
+---
+import { getCollection } from 'astro:content';
+import SectionHeading from './SectionHeading.astro';
+
+const featuredWriting = (await getCollection('writing'))
+  .filter((article) => article.data.featured)
+  .sort((first, second) => first.data.order - second.data.order);
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  dateStyle: 'long',
+  timeZone: 'UTC',
+});
+---
+
+<section id="writing" class="writing section" aria-labelledby="writing-title">
+  <div class="container">
+    <SectionHeading
+      headingId="writing-title"
+      eyebrow="Writing"
+      title="Notes from the workbench"
+      description="Short explanations of the ideas, tools, and systems I keep coming back to."
+    />
+
+    <div class="writing__grid">
+      {featuredWriting.map((article) => (
+        <article class="writing__card card">
+          <header class="writing__header">
+            <div class="writing__meta">
+              <span>{article.data.language}</span>
+              <time datetime={article.data.published.toISOString().slice(0, 10)}>
+                {dateFormatter.format(article.data.published)}
+              </time>
+            </div>
+            <h3>{article.data.title}</h3>
+          </header>
+
+          <p class="writing__excerpt">{article.data.excerpt}</p>
+
+          <ul class="writing__tags" aria-label={`${article.data.title} tags`}>
+            {article.data.tags.map((tag) => <li class="pill">{tag}</li>)}
+          </ul>
+
+          <a
+            class="writing__link"
+            href={article.data.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read on Medium <span aria-hidden="true">&rarr;</span>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .writing {
+    background: var(--color-paper);
+  }
+
+  .writing__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .writing__card {
+    display: flex;
+    min-height: 100%;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .writing__header {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .writing__header h3 {
+    font-size: clamp(1.4rem, 2.5vw, 2rem);
+  }
+
+  .writing__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    color: var(--color-orange);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .writing__meta time {
+    color: var(--color-muted);
+    font-weight: 700;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+
+  .writing__excerpt {
+    color: var(--color-muted);
+  }
+
+  .writing__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+    margin-top: auto;
+  }
+
+  .writing__tags .pill {
+    background: var(--color-yellow);
+    font-size: 0.78rem;
+  }
+
+  .writing__link {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 0.45rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-line);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  @media (max-width: 58rem) {
+    .writing__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .writing__card {
+      min-height: auto;
+    }
+  }
+</style>

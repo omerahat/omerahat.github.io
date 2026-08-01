@@ -1,0 +1,89 @@
+---
+import { profile } from '../data/profile';
+
+const homeHref = import.meta.env.BASE_URL;
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div>
+      <a class="site-footer__identity" href={homeHref}>{profile.name}</a>
+      <p>{profile.headline}</p>
+    </div>
+
+    <nav aria-label="Footer links">
+      <a href={profile.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a href={profile.github} target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href={profile.medium} target="_blank" rel="noopener noreferrer">Medium</a>
+    </nav>
+
+    <p class="site-footer__copyright">© {new Date().getFullYear()} {profile.name}</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding-block: 2.25rem;
+    border-top: 1px solid var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: end;
+    gap: 1.5rem 2rem;
+  }
+
+  .site-footer__identity {
+    display: inline-block;
+    color: var(--color-white);
+    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+
+  .site-footer p {
+    color: var(--color-line);
+    font-size: 0.85rem;
+  }
+
+  .site-footer nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 1rem;
+  }
+
+  .site-footer nav a {
+    color: var(--color-white);
+    font-size: 0.88rem;
+    font-weight: 750;
+    text-decoration: none;
+  }
+
+  .site-footer nav a:hover,
+  .site-footer__identity:hover {
+    color: var(--color-yellow);
+  }
+
+  .site-footer__copyright {
+    grid-column: 1 / -1;
+    padding-top: 1.25rem;
+    border-top: 1px solid rgb(255 247 230 / 0.25);
+  }
+
+  @media (max-width: 40rem) {
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      align-items: start;
+    }
+
+    .site-footer nav {
+      justify-content: flex-start;
+    }
+  }
+</style>

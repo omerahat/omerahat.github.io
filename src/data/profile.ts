@@ -26,6 +26,7 @@ export type Profile = {
   linkedin: string;
   github: string;
   medium: string;
+  researchInterests: string[];
   impactMetrics: ImpactMetric[];
   skills: SkillGroup[];
   education: {
@@ -56,6 +57,7 @@ export const profile = {
   linkedin: 'https://www.linkedin.com/in/omerahat',
   github: 'https://github.com/omerahat',
   medium: 'https://omerahat.medium.com',
+  researchInterests: ['XAI', 'Federated learning', 'Computer vision', 'Data systems'],
   impactMetrics: [
     {
       value: '97%',

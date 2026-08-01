@@ -1,0 +1,77 @@
+---
+import { profile } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="community" class="community section" aria-labelledby="community-title">
+  <div class="container">
+    <SectionHeading
+      headingId="community-title"
+      eyebrow="Community"
+      title="Build the room, not just the project"
+      description="Technical leadership has always been part of the work: sharing context, growing communities, and making space for others to contribute."
+    />
+
+    <ul class="community__grid">
+      {profile.community.map((entry) => (
+        <li>
+          <article class="community__card card">
+            <p class="eyebrow">{entry.organization}</p>
+            <h3>{entry.role}</h3>
+            <p class="community__period">{entry.period}</p>
+            {entry.detail && <p class="community__detail">{entry.detail}</p>}
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<style>
+  .community {
+    border-block: 1px solid var(--color-line);
+    background: var(--color-white);
+  }
+
+  .community__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .community__card {
+    display: grid;
+    align-content: start;
+    gap: 0.65rem;
+    min-height: 100%;
+  }
+
+  .community__card h3 {
+    font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  }
+
+  .community__period {
+    color: var(--color-orange);
+    font-size: 0.88rem;
+    font-weight: 800;
+  }
+
+  .community__detail {
+    margin-top: 0.3rem;
+    color: var(--color-muted);
+    font-size: 0.92rem;
+  }
+
+  @media (max-width: 58rem) {
+    .community__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .community__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

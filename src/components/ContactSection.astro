@@ -1,0 +1,118 @@
+---
+import { profile } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="contact" class="contact section" aria-labelledby="contact-title">
+  <div class="container">
+    <div class="contact__panel">
+      <SectionHeading
+        headingId="contact-title"
+        eyebrow="Contact"
+        title="Have a useful problem to solve?"
+        description="Email is the best place to start. I am open to thoughtful conversations about AI, research, and building products that earn trust."
+      />
+
+      <div class="contact__actions">
+        <ul class="contact__links" aria-label="Public contact links">
+          <li>
+            <a class="contact__link" href={`mailto:${profile.email}`}>{profile.email}</a>
+          </li>
+          <li>
+            <a
+              class="contact__link"
+              href={profile.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LinkedIn <span aria-hidden="true">&nearr;</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="contact__link"
+              href={profile.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub <span aria-hidden="true">&nearr;</span>
+            </a>
+          </li>
+        </ul>
+
+        <a class="button button--primary contact__resume" href={profile.resumeRequestHref}>
+          Request the resume <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
+
+      <p class="contact__fallback">If your mail client is not configured, copy the email above.</p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    background: var(--color-yellow);
+  }
+
+  .contact__panel {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.75fr);
+    gap: 3rem;
+    padding: clamp(1.5rem, 5vw, 4rem);
+    border: 2px solid var(--color-ink);
+    border-radius: 1.25rem;
+    background: var(--color-white);
+    box-shadow: 0.45rem 0.45rem 0 var(--color-ink);
+  }
+
+  .contact__actions {
+    display: grid;
+    align-content: center;
+    gap: 1.25rem;
+  }
+
+  .contact__links {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .contact__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--color-line);
+    font-weight: 800;
+    text-decoration: none;
+  }
+
+  .contact__link:hover {
+    color: var(--color-ink);
+    border-color: var(--color-orange);
+  }
+
+  .contact__resume {
+    justify-self: start;
+  }
+
+  .contact__fallback {
+    grid-column: 1 / -1;
+    color: var(--color-muted);
+    font-size: 0.88rem;
+  }
+
+  @media (max-width: 46rem) {
+    .contact__panel {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 28rem) {
+    .contact__resume {
+      width: 100%;
+    }
+  }
+</style>

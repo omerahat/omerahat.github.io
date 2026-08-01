@@ -1,0 +1,153 @@
+---
+import { profile } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="about" class="about section" aria-labelledby="about-title">
+  <div class="container">
+    <SectionHeading
+      headingId="about-title"
+      eyebrow="About"
+      title="Curious about the details"
+      description="I like the space where research questions become useful, explainable systems."
+    />
+
+    <div class="about__grid">
+      <article class="about__card about__card--education card">
+        <p class="eyebrow">Education</p>
+        <h3>{profile.education.institution}</h3>
+        <p class="about__degree">{profile.education.degree}</p>
+
+        <dl class="about__facts">
+          <div>
+            <dt>Period</dt>
+            <dd>{profile.education.period}</dd>
+          </div>
+          <div>
+            <dt>GPA</dt>
+            <dd>{profile.education.gpa}</dd>
+          </div>
+        </dl>
+
+        <p class="about__capstone">
+          <span class="about__label">Capstone</span>
+          {profile.education.capstone}
+        </p>
+      </article>
+
+      <article class="about__card card">
+        <p class="eyebrow">Research interests</p>
+        <h3>Questions worth exploring</h3>
+        <ul class="about__interests" aria-label="Research interests">
+          {profile.researchInterests.map((interest) => <li class="pill">{interest}</li>)}
+        </ul>
+      </article>
+
+      <article class="about__card about__card--publication card">
+        <p class="eyebrow">Publication</p>
+        <h3>{profile.publication.title}</h3>
+        <p class="about__publication-date">{profile.publication.published}</p>
+        <p class="about__publication-detail">{profile.publication.detail}</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about {
+    background: var(--color-paper);
+  }
+
+  .about__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
+    margin-top: 3rem;
+  }
+
+  .about__card {
+    display: grid;
+    align-content: start;
+    gap: 0.85rem;
+  }
+
+  .about__card--education {
+    grid-row: span 2;
+    background: var(--color-yellow);
+  }
+
+  .about__card h3 {
+    max-width: 26ch;
+    font-size: clamp(1.55rem, 2.8vw, 2.25rem);
+  }
+
+  .about__degree,
+  .about__publication-detail {
+    color: var(--color-muted);
+  }
+
+  .about__facts {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 0.8rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(26 26 26 / 0.3);
+  }
+
+  .about__facts dt,
+  .about__label {
+    color: var(--color-muted);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .about__facts dd {
+    margin: 0.25rem 0 0;
+    font-weight: 750;
+  }
+
+  .about__capstone {
+    display: grid;
+    gap: 0.3rem;
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgb(26 26 26 / 0.3);
+    font-weight: 700;
+  }
+
+  .about__interests {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.45rem;
+  }
+
+  .about__interests .pill {
+    background: var(--color-yellow);
+  }
+
+  .about__publication-date {
+    color: var(--color-orange);
+    font-size: 0.9rem;
+    font-weight: 800;
+  }
+
+  @media (max-width: 44rem) {
+    .about__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about__card--education {
+      grid-row: auto;
+    }
+  }
+
+  @media (max-width: 30rem) {
+    .about__facts {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

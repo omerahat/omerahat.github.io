@@ -1,0 +1,74 @@
+---
+import { profile } from '../data/profile';
+import SectionHeading from './SectionHeading.astro';
+---
+
+<section id="skills" class="skills section" aria-labelledby="skills-title">
+  <div class="container">
+    <SectionHeading
+      headingId="skills-title"
+      eyebrow="Toolkit"
+      title="Skills for the full loop"
+      description="From modeling and explainability to data systems, APIs, and the tools that make good work repeatable."
+    />
+
+    <div class="skills__grid">
+      {profile.skills.map((group) => (
+        <article class="skills__group card">
+          <h3>{group.category}</h3>
+          <ul aria-label={`${group.category} skills`}>
+            {group.items.map((item) => <li class="pill">{item}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills {
+    border-block: 1px solid var(--color-line);
+    background: var(--color-white);
+  }
+
+  .skills__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
+    margin-top: 3rem;
+  }
+
+  .skills__group {
+    display: grid;
+    align-content: start;
+    gap: 1rem;
+    min-height: 100%;
+  }
+
+  .skills__group h3 {
+    font-size: clamp(1.3rem, 2vw, 1.7rem);
+  }
+
+  .skills__group ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .skills__group .pill {
+    background: var(--color-paper);
+    font-size: 0.8rem;
+  }
+
+  @media (max-width: 58rem) {
+    .skills__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 36rem) {
+    .skills__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,10 +1,16 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import AboutSection from '../components/AboutSection.astro';
+import CommunitySection from '../components/CommunitySection.astro';
+import ContactSection from '../components/ContactSection.astro';
 import ExperienceTimeline from '../components/ExperienceTimeline.astro';
 import Hero from '../components/Hero.astro';
 import ImpactStrip from '../components/ImpactStrip.astro';
 import ProjectsSection from '../components/ProjectsSection.astro';
+import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
+import SkillsMatrix from '../components/SkillsMatrix.astro';
+import WritingSection from '../components/WritingSection.astro';
 ---
 
 <BaseLayout>
@@ -14,5 +20,11 @@ import SiteHeader from '../components/SiteHeader.astro';
     <ImpactStrip />
     <ProjectsSection />
     <ExperienceTimeline />
+    <SkillsMatrix />
+    <AboutSection />
+    <CommunitySection />
+    <WritingSection />
+    <ContactSection />
   </main>
+  <SiteFooter />
 </BaseLayout>
