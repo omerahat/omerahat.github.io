@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#fff7e6"/>
+  <circle cx="1080" cy="70" r="180" fill="#ffd166"/>
+  <path d="M1010 0h190v250c-58-27-115-76-190-146V0Z" fill="#e76f51"/>
+  <path d="M0 520c160-58 252-50 390 25 111 60 226 65 362 13 143-55 287-52 448 26v46H0v-90Z" fill="#ffd166"/>
+
+  <g fill="#e8590c" font-family="Arial, Helvetica, sans-serif" font-weight="700">
+    <text x="86" y="96" font-size="24" letter-spacing="4">AI ENGINEER / EXPLAINABLE ML</text>
+  </g>
+
+  <text x="86" y="220" fill="#1a1a1a" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800">I build</text>
+  <rect x="80" y="245" width="580" height="96" rx="12" fill="#ffd166" transform="rotate(-1 370 293)"/>
+  <text x="94" y="322" fill="#1a1a1a" font-family="Arial, Helvetica, sans-serif" font-size="76" font-weight="800">trustworthy AI</text>
+  <text x="88" y="405" fill="#1a1a1a" font-family="Arial, Helvetica, sans-serif" font-size="43" font-weight="700">that makes complex systems useful.</text>
+
+  <line x1="88" y1="480" x2="1112" y2="480" stroke="#f0e3c8" stroke-width="3"/>
+  <text x="88" y="543" fill="#1a1a1a" font-family="Arial, Helvetica, sans-serif" font-size="31" font-weight="800">ÖMER AHAT</text>
+  <text x="1112" y="543" fill="#6b5b35" font-family="Arial, Helvetica, sans-serif" font-size="24" text-anchor="end">AI Engineer &amp; Explainable ML Researcher</text>
+
+  <g transform="translate(1014 352)">
+    <rect width="106" height="106" rx="28" fill="#1a1a1a"/>
+    <circle cx="42" cy="53" r="23" fill="none" stroke="#ffd166" stroke-width="9"/>
+    <path d="m61 78 18-50h12L73 78H61Z" fill="#e8590c"/>
+  </g>
+</svg>

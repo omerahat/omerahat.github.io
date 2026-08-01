@@ -1,0 +1,21 @@
+:root {
+  --color-paper: #fff7e6;
+  --color-ink: #1a1a1a;
+  --color-orange: #e8590c;
+  --color-yellow: #ffd166;
+  --color-coral: #e76f51;
+  --color-muted: #6b5b35;
+  --color-line: #f0e3c8;
+  --color-white: #fffdf8;
+
+  --card-radius: 1rem;
+  --card-padding: clamp(1.25rem, 2.5vw, 2rem);
+  --card-border: 1px solid var(--color-line);
+  --card-shadow: 0 0.75rem 0 var(--color-line);
+  --pill-radius: 999px;
+  --pill-padding: 0.5rem 0.85rem;
+
+  --content-width: 72rem;
+  --section-spacing: clamp(4.5rem, 9vw, 8rem);
+  --page-gutter: clamp(1.25rem, 4vw, 4rem);
+}
