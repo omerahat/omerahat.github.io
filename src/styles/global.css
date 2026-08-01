@@ -218,11 +218,11 @@ hr {
   background: linear-gradient(
     to bottom,
     transparent 48%,
-    var(--color-orange) 48%,
-    var(--color-orange) 92%,
+    var(--color-orange-marker) 48%,
+    var(--color-orange-marker) 92%,
     transparent 92%
   );
-  color: var(--color-ink);
+  color: var(--color-orange-marker-text);
 }
 
 @media (max-width: 48rem) {
