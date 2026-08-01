@@ -22,3 +22,14 @@ test('selected work has no color contrast violations', async ({ page }) => {
 
   expect(results.violations).toEqual([]);
 });
+
+test('about section has no color contrast violations', async ({ page }) => {
+  await page.goto('/');
+
+  const results = await new AxeBuilder({ page })
+    .include('#about')
+    .withRules(['color-contrast'])
+    .analyze();
+
+  expect(results.violations).toEqual([]);
+});
