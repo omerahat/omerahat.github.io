@@ -25,6 +25,105 @@ test('mobile navigation opens, closes with Escape, and closes after a link click
   await expect(navigation).toBeHidden();
 });
 
+test('homepage exposes unique section anchors and matching navigation targets', async ({ page }) => {
+  await page.goto('/');
+
+  const sections = [
+    { id: 'work', label: 'Work' },
+    { id: 'experience', label: 'Experience' },
+    { id: 'skills', label: 'Skills' },
+    { id: 'about', label: 'About' },
+    { id: 'community', label: 'Community' },
+    { id: 'writing', label: 'Writing' },
+    { id: 'contact', label: 'Contact' },
+  ];
+
+  for (const section of sections) {
+    await expect(page.locator(`#${section.id}`)).toHaveCount(1);
+  }
+
+  const navigation = page.getByRole('navigation', { name: 'Primary navigation' });
+  for (const section of sections.filter(({ label }) => ['Work', 'Experience', 'About', 'Writing', 'Contact'].includes(label))) {
+    await expect(navigation.getByRole('link', { name: section.label, exact: true })).toHaveAttribute(
+      'href',
+      `#${section.id}`,
+    );
+  }
+});
+
+test('homepage has one h1, sequential headings, and semantic landmarks', async ({ page }) => {
+  await page.goto('/');
+
+  await expect(page.getByRole('heading', { level: 1 })).toHaveCount(1);
+  await expect(page.getByRole('banner')).toHaveCount(1);
+  await expect(page.getByRole('main')).toHaveCount(1);
+  await expect(page.getByRole('contentinfo')).toHaveCount(1);
+
+  const headingLevels = await page
+    .locator('main h1, main h2, main h3, main h4, main h5, main h6')
+    .evaluateAll((headings) => headings.map((heading) => Number(heading.tagName.slice(1))));
+
+  expect(headingLevels[0]).toBe(1);
+  expect(headingLevels.filter((level) => level === 1)).toHaveLength(1);
+  for (let index = 1; index < headingLevels.length; index += 1) {
+    expect(headingLevels[index]).toBeLessThanOrEqual(headingLevels[index - 1] + 1);
+  }
+});
+
+test('homepage has no horizontal overflow at the 320px mobile boundary', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 800 });
+  await page.goto('/');
+
+  const widths = await page.evaluate(() => ({
+    documentWidth: document.documentElement.scrollWidth,
+    bodyWidth: document.body.scrollWidth,
+    viewportWidth: document.documentElement.clientWidth,
+  }));
+
+  expect(widths.documentWidth).toBeLessThanOrEqual(widths.viewportWidth);
+  expect(widths.bodyWidth).toBeLessThanOrEqual(widths.viewportWidth);
+});
+
+test('homepage removes nonessential motion when reduced motion is requested', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+
+  const motionStyles = await page.locator('.button').first().evaluate((button) => {
+    const style = getComputedStyle(button);
+    return {
+      animationName: style.animationName,
+      transitionProperty: style.transitionProperty,
+      scrollBehavior: getComputedStyle(document.documentElement).scrollBehavior,
+    };
+  });
+
+  expect(motionStyles.animationName).toBe('none');
+  expect(motionStyles.transitionProperty).toBe('none');
+  expect(motionStyles.scrollBehavior).toBe('auto');
+});
+
+test('homepage exposes a visible keyboard focus indicator', async ({ page }) => {
+  await page.goto('/');
+  await page.keyboard.press('Tab');
+
+  const focusStyle = await page.evaluate(() => {
+    const activeElement = document.activeElement;
+    if (!(activeElement instanceof HTMLElement)) {
+      return null;
+    }
+
+    const style = getComputedStyle(activeElement);
+    return {
+      outlineStyle: style.outlineStyle,
+      outlineWidth: style.outlineWidth,
+    };
+  });
+
+  expect(focusStyle).not.toBeNull();
+  expect(focusStyle?.outlineStyle).not.toBe('none');
+  expect(focusStyle?.outlineWidth).not.toBe('0px');
+});
+
 test('project cards expose verified external links and no fabricated XPRS link', async ({ page }) => {
   await page.goto('/');
 
