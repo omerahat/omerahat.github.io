@@ -1,4 +1,5 @@
 import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 const projectSchema = z.object({
@@ -37,15 +38,15 @@ const writingSchema = z.object({
 
 export const collections = {
   projects: defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
     schema: projectSchema,
   }),
   experience: defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/*.md', base: './src/content/experience' }),
     schema: experienceSchema,
   }),
   writing: defineCollection({
-    type: 'content',
+    loader: glob({ pattern: '**/*.md', base: './src/content/writing' }),
     schema: writingSchema,
   }),
 };
