@@ -31,7 +31,9 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
                 {dateFormatter.format(article.data.published)}
               </time>
             </div>
-            <h3>{article.data.title}</h3>
+            <h3 lang={article.data.language === 'Turkish' ? 'tr' : undefined}>
+              {article.data.title}
+            </h3>
           </header>
 
           <p class="writing__excerpt">{article.data.excerpt}</p>

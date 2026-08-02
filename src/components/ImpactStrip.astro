@@ -8,8 +8,8 @@ import SectionHeading from './SectionHeading.astro';
     <SectionHeading headingId="impact-title" eyebrow="Impact" title="Proof, in numbers" />
 
     <ul class="impact-strip__grid">
-      {profile.impactMetrics.map((metric, index) => (
-        <li class:list={['impact-strip__metric', `impact-strip__metric--${index + 1}`]}>
+      {profile.impactMetrics.map((metric) => (
+        <li class="impact-strip__metric">
           <p class="impact-strip__value">{metric.value}</p>
           <div>
             <p class="impact-strip__label">{metric.label}</p>

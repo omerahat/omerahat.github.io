@@ -32,7 +32,7 @@ const renderedExperiences = await Promise.all(
           ]}
         >
           <span class="experience__marker" aria-hidden="true"></span>
-          <article class="experience__card">
+          <article class="experience__card" itemscope itemtype="https://schema.org/JobPosting">
             <header class="experience__header">
               <div>
                 <p class="eyebrow">{experience.data.company}</p>

@@ -4,13 +4,12 @@ interface Props {
   title: string;
   description?: string;
   headingId?: string;
-  align?: 'left' | 'center';
 }
 
-const { eyebrow, title, description, headingId, align = 'left' } = Astro.props;
+const { eyebrow, title, description, headingId } = Astro.props;
 ---
 
-<div class:list={['section-heading', `section-heading--${align}`]}>
+<div class="section-heading">
   <p class="eyebrow">{eyebrow}</p>
   <h2 id={headingId}>{title}</h2>
   {description && <p class="section-heading__description">{description}</p>}
@@ -30,14 +29,5 @@ const { eyebrow, title, description, headingId, align = 'left' } = Astro.props;
     margin-top: 1rem;
     color: var(--color-muted);
     font-size: 1.05rem;
-  }
-
-  .section-heading--center {
-    margin-inline: auto;
-    text-align: center;
-  }
-
-  .section-heading--center .section-heading__description {
-    margin-inline: auto;
   }
 </style>
