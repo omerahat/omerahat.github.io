@@ -2,5 +2,9 @@ node_modules/
 dist/
 .astro/
 .superpowers/
+.opencode/
 .DS_Store
 test-results/
+omer.md
+linkedin.pdf
+docs/
