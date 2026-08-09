@@ -284,7 +284,6 @@ hr {
 
 @media (prefers-contrast: more) {
   :root {
-    --color-border: var(--color-foreground);
     --color-foreground-muted: #4d3a1c;
     --border-color-subtle: var(--color-foreground);
     --surface-card: var(--color-surface-solid);
@@ -293,6 +292,7 @@ hr {
     --surface-backdrop-filter: none;
     --shadow-card: none;
     --focus-ring-width: 4px;
+    --color-focus: var(--color-accent);
   }
 
   .site-header {
