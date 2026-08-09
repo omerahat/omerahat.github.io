@@ -6,6 +6,8 @@ import SectionHeading from './SectionHeading.astro';
 const featuredProjects = (await getCollection('projects'))
   .filter((project) => project.data.featured)
   .sort((first, second) => first.data.order - second.data.order);
+
+const [featuredProject, ...supportingProjects] = featuredProjects;
 ---
 
 <section id="work" class="projects section" aria-labelledby="work-title">
@@ -18,36 +20,43 @@ const featuredProjects = (await getCollection('projects'))
     />
 
     <div class="projects__grid">
-      {featuredProjects.map((project) => <ProjectCard project={project} />)}
+      {featuredProject && <ProjectCard project={featuredProject} featured />}
+
+      <div class="projects__supporting-grid">
+        {supportingProjects.map((project) => <ProjectCard project={project} />)}
+      </div>
     </div>
   </div>
 </section>
 
 <style>
   .projects {
-    border-bottom: 1px solid var(--color-line);
-    background: var(--color-white);
+    border-bottom: var(--border-divider);
+    background: var(--color-surface-solid);
   }
 
   .projects__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: clamp(1.5rem, 3vw, 2.5rem);
     margin-top: 3rem;
   }
 
-  .projects__grid :global(.project-card:first-child) {
+  .projects__grid > :global(.project-card--featured),
+  .projects__supporting-grid {
     grid-column: 1 / -1;
-    background: var(--color-yellow);
   }
 
-  .projects__grid :global(.project-card:first-child .project-card__list .pill) {
-    background: var(--color-white);
+  .projects__supporting-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
   }
 
-  .projects__grid :global(.project-card:first-child .eyebrow),
-  .projects__grid :global(.project-card:first-child .project-card__label) {
-    color: var(--color-ink);
+  @media (max-width: 60rem) {
+    .projects__supporting-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   @media (max-width: 48rem) {
@@ -55,8 +64,8 @@ const featuredProjects = (await getCollection('projects'))
       grid-template-columns: 1fr;
     }
 
-    .projects__grid :global(.project-card:first-child) {
-      grid-column: auto;
+    .projects__supporting-grid {
+      grid-template-columns: 1fr;
     }
   }
 </style>

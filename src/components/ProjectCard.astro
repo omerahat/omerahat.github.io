@@ -3,14 +3,15 @@ import { render, type CollectionEntry } from 'astro:content';
 
 interface Props {
   project: CollectionEntry<'projects'>;
+  featured?: boolean;
 }
 
-const { project } = Astro.props;
+const { project, featured = false } = Astro.props;
 const { data } = project;
 const { Content } = await render(project);
 ---
 
-<article class="project-card">
+<article class:list={['project-card', { 'project-card--featured': featured }]}>
   <header class="project-card__header">
     <p class="eyebrow">{data.eyebrow}</p>
     <h3>{data.title}</h3>
@@ -57,12 +58,23 @@ const { Content } = await render(project);
     display: flex;
     min-height: 100%;
     flex-direction: column;
-    gap: 1.4rem;
+    gap: var(--space-5);
     padding: var(--card-padding);
-    border: 2px solid var(--color-ink);
-    border-radius: var(--card-radius);
-    background: var(--color-white);
-    box-shadow: 0.35rem 0.35rem 0 var(--color-line);
+    border: var(--border-subtle);
+    border-radius: var(--radius-card);
+    background: var(--surface-card);
+    box-shadow: var(--shadow-card);
+    backdrop-filter: var(--surface-backdrop-filter);
+    -webkit-backdrop-filter: var(--surface-backdrop-filter);
+  }
+
+  .project-card--featured {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(14rem, 0.85fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    background: var(--color-accent-soft);
+    box-shadow: var(--shadow-raised);
   }
 
   .project-card__header {
@@ -75,10 +87,25 @@ const { Content } = await render(project);
     font-size: clamp(1.75rem, 3vw, 2.6rem);
   }
 
+  .project-card--featured .project-card__header,
+  .project-card--featured .project-card__summary {
+    grid-column: 1;
+  }
+
+  .project-card--featured h3 {
+    max-width: 14ch;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+  }
+
   .project-card__summary {
     max-width: 42rem;
     color: var(--color-muted);
     font-size: 1.05rem;
+  }
+
+  .project-card--featured .project-card__summary {
+    max-width: 38rem;
+    font-size: clamp(1.05rem, 2vw, 1.25rem);
   }
 
   .project-card__details {
@@ -87,12 +114,27 @@ const { Content } = await render(project);
     gap: 1.4rem;
   }
 
+  .project-card--featured .project-card__details {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    grid-template-columns: 1fr;
+    align-content: start;
+    align-self: stretch;
+    padding-left: clamp(1rem, 3vw, 2rem);
+    border-left: var(--border-divider);
+  }
+
   .project-card__label {
-    color: var(--color-orange);
+    color: var(--color-accent);
     font-size: 0.75rem;
     font-weight: 800;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+
+  .project-card--featured .eyebrow,
+  .project-card--featured .project-card__label {
+    color: var(--color-foreground);
   }
 
   .project-card__body,
@@ -109,7 +151,13 @@ const { Content } = await render(project);
     gap: 1.15rem;
     margin-top: auto;
     padding-top: 1.25rem;
-    border-top: 1px solid var(--color-line);
+    border-top: var(--border-divider);
+  }
+
+  .project-card--featured .project-card__footer {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
+    align-items: end;
   }
 
   .project-card__list {
@@ -120,8 +168,12 @@ const { Content } = await render(project);
   }
 
   .project-card__list .pill {
-    background: var(--color-paper);
+    background: var(--color-background);
     font-size: 0.8rem;
+  }
+
+  .project-card--featured .project-card__list .pill {
+    background: var(--color-surface-solid);
   }
 
   .project-card__link {
@@ -130,21 +182,51 @@ const { Content } = await render(project);
     justify-self: start;
     gap: 0.45rem;
     padding: 0.7rem 0.95rem;
-    border: 2px solid var(--color-ink);
-    border-radius: var(--pill-radius);
-    background: var(--color-yellow);
+    border: var(--border-strong);
+    border-radius: var(--radius-pill);
+    background: var(--color-foreground);
+    color: var(--color-surface-solid);
     font-weight: 800;
     text-decoration: none;
   }
 
   .project-card__link:hover {
-    color: var(--color-ink);
-    background: var(--color-coral);
-    transform: translate(-0.1rem, -0.1rem);
+    color: var(--color-surface-solid);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .project-card__link:hover {
+      transform: translateY(-0.1rem);
+    }
+  }
+
+  @media (max-width: 42rem) {
+    .project-card--featured {
+      display: flex;
+    }
+
+    .project-card--featured .project-card__header,
+    .project-card--featured .project-card__summary,
+    .project-card--featured .project-card__details,
+    .project-card--featured .project-card__footer {
+      grid-column: auto;
+      grid-row: auto;
+    }
+
+    .project-card--featured .project-card__details {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      padding-left: 0;
+      border-left: 0;
+    }
+
+    .project-card--featured .project-card__footer {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 36rem) {
-    .project-card__details {
+    .project-card__details,
+    .project-card--featured .project-card__details {
       grid-template-columns: 1fr;
     }
   }

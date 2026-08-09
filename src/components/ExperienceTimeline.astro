@@ -64,14 +64,14 @@ const renderedExperiences = await Promise.all(
 
 <style>
   .experience {
-    background: var(--color-paper);
+    background: var(--color-background);
   }
 
   .experience__timeline {
     position: relative;
     display: grid;
     max-width: 60rem;
-    gap: 1.5rem;
+    gap: 1rem;
     margin-top: 3rem;
   }
 
@@ -79,47 +79,49 @@ const renderedExperiences = await Promise.all(
     position: absolute;
     top: 1.5rem;
     bottom: 1.5rem;
-    left: 0.65rem;
-    width: 2px;
-    background: var(--color-line);
+    left: 0.5rem;
+    width: 1px;
+    background: var(--color-border);
     content: '';
   }
 
   .experience__item {
     position: relative;
-    padding-left: 2.75rem;
+    padding-left: 2.5rem;
   }
 
   .experience__marker {
     position: absolute;
     z-index: 1;
     top: 1.7rem;
-    left: 0;
-    width: 1.35rem;
-    height: 1.35rem;
-    border: 3px solid var(--color-ink);
+    left: 0.05rem;
+    width: 0.95rem;
+    height: 0.95rem;
+    border: 2px solid var(--color-border);
     border-radius: 50%;
-    background: var(--color-paper);
+    background: var(--color-background);
   }
 
   .experience__item--current .experience__marker {
-    border-color: var(--color-orange);
-    background: var(--color-yellow);
-    box-shadow: 0.15rem 0.15rem 0 var(--color-ink);
+    border-color: var(--color-accent);
+    background: var(--color-accent-soft);
   }
 
   .experience__card {
     display: grid;
     gap: 1.15rem;
     padding: var(--card-padding);
-    border: var(--card-border);
-    border-radius: var(--card-radius);
-    background: var(--color-white);
+    border: var(--border-subtle);
+    border-radius: var(--radius-card);
+    background: var(--surface-card);
+    backdrop-filter: var(--surface-backdrop-filter);
+    -webkit-backdrop-filter: var(--surface-backdrop-filter);
   }
 
   .experience__item--current .experience__card {
-    border: 2px solid var(--color-ink);
-    box-shadow: 0.35rem 0.35rem 0 var(--color-yellow);
+    border: var(--border-strong);
+    background: var(--surface-raised);
+    box-shadow: var(--shadow-raised);
   }
 
   .experience__header {
@@ -139,16 +141,16 @@ const renderedExperiences = await Promise.all(
     flex-shrink: 0;
     justify-items: end;
     gap: 0.2rem;
-    color: var(--color-muted);
+    color: var(--color-foreground-muted);
     font-size: 0.88rem;
     text-align: right;
   }
 
   .experience__current {
     padding: 0.25rem 0.55rem;
-    border-radius: var(--pill-radius);
-    background: var(--color-orange);
-    color: var(--color-white);
+    border-radius: var(--radius-pill);
+    background: var(--color-accent);
+    color: var(--color-surface-solid);
     font-size: 0.72rem;
     font-weight: 800;
     letter-spacing: 0.08em;
@@ -157,7 +159,7 @@ const renderedExperiences = await Promise.all(
 
   .experience__body :global(p) {
     max-width: 48rem;
-    color: var(--color-muted);
+    color: var(--color-foreground-muted);
   }
 
   .experience__focus {
@@ -168,7 +170,7 @@ const renderedExperiences = await Promise.all(
   }
 
   .experience__focus .pill {
-    background: var(--color-paper);
+    background: var(--color-background);
     font-size: 0.8rem;
   }
 
@@ -190,12 +192,13 @@ const renderedExperiences = await Promise.all(
     }
 
     .experience__timeline::before {
-      left: 0.45rem;
+      left: 0.4rem;
     }
 
     .experience__marker {
-      width: 1rem;
-      height: 1rem;
+      left: 0;
+      width: 0.8rem;
+      height: 0.8rem;
     }
   }
 </style>
