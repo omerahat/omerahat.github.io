@@ -4,6 +4,7 @@
 
 :root {
   font-synthesis: none;
+  color-scheme: light;
 }
 
 *,
@@ -13,7 +14,7 @@
 }
 
 html {
-  background: var(--color-paper);
+  background: var(--color-background);
   color: var(--color-ink);
   scroll-behavior: smooth;
 }
@@ -21,9 +22,9 @@ html {
 body {
   min-width: 320px;
   margin: 0;
-  background: var(--color-paper);
+  background: var(--color-background);
   color: var(--color-ink);
-  font-family: 'DM Sans Variable', 'DM Sans', sans-serif;
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.6;
   text-rendering: optimizeLegibility;
@@ -64,22 +65,34 @@ h5,
 h6 {
   margin: 0;
   color: var(--color-ink);
-  font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif;
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
   font-weight: 750;
-  letter-spacing: -0.035em;
-  line-height: 1.08;
 }
 
 h1 {
   font-size: clamp(3.25rem, 8vw, 7rem);
+  letter-spacing: var(--tracking-display-xl);
+  line-height: var(--leading-display-xl);
 }
 
 h2 {
   font-size: clamp(2.25rem, 5vw, 4.5rem);
+  letter-spacing: var(--tracking-display-lg);
+  line-height: var(--leading-display-lg);
 }
 
 h3 {
   font-size: clamp(1.5rem, 3vw, 2.25rem);
+  letter-spacing: var(--tracking-display-md);
+  line-height: var(--leading-display-md);
+}
+
+h4,
+h5,
+h6 {
+  letter-spacing: var(--tracking-display-sm);
+  line-height: var(--leading-display-sm);
 }
 
 p,
@@ -100,16 +113,27 @@ a {
   color: var(--color-ink);
   text-decoration-thickness: 0.1em;
   text-underline-offset: 0.2em;
-  transition: transform 180ms ease, opacity 180ms ease;
+}
+
+a,
+button {
+  transition: var(--motion-interactive);
 }
 
 a:hover {
   color: var(--color-orange);
 }
 
+a:active,
+button:active {
+  transform: scale(0.98);
+  opacity: 0.86;
+}
+
 :focus-visible {
-  outline: 3px solid var(--color-orange);
-  outline-offset: 4px;
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
+  box-shadow: var(--shadow-focus);
 }
 
 ::selection {
@@ -135,8 +159,8 @@ hr {
   left: 1rem;
   padding: 0.65rem 0.9rem;
   border-radius: var(--pill-radius);
-  background: var(--color-ink);
-  color: var(--color-white);
+  background: var(--color-foreground);
+  color: var(--color-surface-solid);
   font-weight: 700;
   transform: translateY(-180%);
 }
@@ -158,16 +182,19 @@ hr {
   color: var(--color-orange);
   font-size: 0.8rem;
   font-weight: 800;
-  letter-spacing: 0.12em;
-  line-height: 1.2;
+  letter-spacing: var(--tracking-label);
+  line-height: 1.3;
   text-transform: uppercase;
 }
 
 .card {
   padding: var(--card-padding);
-  border: var(--card-border);
+  border: var(--border-subtle);
   border-radius: var(--card-radius);
-  background: var(--color-white);
+  background: var(--surface-card);
+  box-shadow: var(--shadow-card);
+  backdrop-filter: var(--surface-backdrop-filter);
+  -webkit-backdrop-filter: var(--surface-backdrop-filter);
 }
 
 .pill {
@@ -235,6 +262,46 @@ hr {
   }
 }
 
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --surface-card: var(--color-surface-solid);
+    --surface-raised: var(--color-surface-solid);
+    --surface-header: var(--color-background);
+    --surface-backdrop-filter: none;
+  }
+
+  /* Scoped component styles own the translucent header properties. */
+  .site-header {
+    background: var(--surface-header) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  .site-header__navigation {
+    background: var(--color-surface-solid) !important;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --color-border: var(--color-foreground);
+    --color-foreground-muted: #4d3a1c;
+    --border-color-subtle: var(--color-foreground);
+    --surface-card: var(--color-surface-solid);
+    --surface-raised: var(--color-surface-solid);
+    --surface-header: var(--color-background);
+    --surface-backdrop-filter: none;
+    --shadow-card: none;
+    --focus-ring-width: 4px;
+  }
+
+  .site-header {
+    background: var(--surface-header) !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -246,5 +313,12 @@ hr {
     scroll-behavior: auto !important;
     transition: none !important;
     animation: none !important;
+  }
+
+  a:not(.skip-link):hover,
+  a:not(.skip-link):active,
+  button:hover,
+  button:active {
+    transform: none !important;
   }
 }
