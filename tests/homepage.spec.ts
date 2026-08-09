@@ -12,6 +12,10 @@ const countGridTracks = async (page: Page, selector: string) =>
 test('homepage renders the exact hero headline and impact metrics', async ({ page }) => {
   await page.goto('/');
 
+  await expect(page.locator('main > .hero')).toHaveAccessibleDescription(
+    'I build trustworthy AI that makes complex systems useful.',
+  );
+
   await expect(
     page.getByRole('heading', {
       level: 1,
