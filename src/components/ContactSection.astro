@@ -128,7 +128,12 @@ import SectionHeading from './SectionHeading.astro';
   .contact__resume:hover {
     color: var(--color-surface-solid);
     background: var(--color-accent);
-    transform: translateY(-0.1rem);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .contact__resume:hover {
+      transform: translateY(-0.1rem);
+    }
   }
 
   .contact__fallback {

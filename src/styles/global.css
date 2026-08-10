@@ -285,6 +285,7 @@ hr {
 @media (prefers-contrast: more) {
   :root {
     --color-foreground-muted: #4d3a1c;
+    --color-border: var(--color-foreground-muted);
     --border-color-subtle: var(--color-foreground);
     --surface-card: var(--color-surface-solid);
     --surface-raised: var(--color-surface-solid);

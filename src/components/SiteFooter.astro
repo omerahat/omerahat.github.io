@@ -38,7 +38,9 @@ const homeHref = import.meta.env.BASE_URL;
   }
 
   .site-footer__identity {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
     padding-block: 0.2rem;
     color: var(--color-surface-solid);
     font-family: var(--font-display);
@@ -49,7 +51,7 @@ const homeHref = import.meta.env.BASE_URL;
   }
 
   .site-footer p {
-    color: var(--color-border);
+    color: var(--color-background);
     font-size: 0.85rem;
   }
 
@@ -63,7 +65,7 @@ const homeHref = import.meta.env.BASE_URL;
   .site-footer nav a {
     display: inline-flex;
     align-items: center;
-    min-height: 2.5rem;
+    min-height: 2.75rem;
     padding-block: 0.35rem;
     color: var(--color-surface-solid);
     font-size: 0.88rem;

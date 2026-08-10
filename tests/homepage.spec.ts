@@ -129,6 +129,18 @@ test('homepage exposes verified Medium links and external attributes', async ({ 
   }
 });
 
+test('homepage keeps representative links at or above 44px touch targets', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/');
+
+  const measuredHeights = await page
+    .locator('.site-header__brand, .site-header__navigation a, #writing .writing__link, .site-footer a')
+    .evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().height));
+
+  expect(measuredHeights.length).toBeGreaterThan(0);
+  expect(measuredHeights.every((height) => height >= 44)).toBe(true);
+});
+
 test('mobile navigation reflects closed, open, and Escape states', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('/');
