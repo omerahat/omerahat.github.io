@@ -5,6 +5,7 @@ dist/
 .opencode/
 .DS_Store
 test-results/
+.worktrees/
 omer.md
 linkedin.pdf
 docs/

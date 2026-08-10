@@ -83,9 +83,10 @@ const homeHref = import.meta.env.BASE_URL;
     position: sticky;
     z-index: 20;
     top: 0;
-    border-bottom: 1px solid var(--color-line);
-    background: rgb(255 247 230 / 0.94);
-    backdrop-filter: blur(0.75rem);
+    border-bottom: var(--border-divider);
+    background: var(--surface-header);
+    backdrop-filter: var(--surface-backdrop-filter);
+    -webkit-backdrop-filter: var(--surface-backdrop-filter);
   }
 
   .site-header__inner {
@@ -101,8 +102,9 @@ const homeHref = import.meta.env.BASE_URL;
     display: inline-flex;
     align-items: center;
     gap: 0.75rem;
-    color: var(--color-ink);
-    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif;
+    min-height: 2.75rem;
+    color: var(--color-foreground);
+    font-family: var(--font-display);
     font-size: 1.1rem;
     font-weight: 750;
     letter-spacing: -0.03em;
@@ -110,7 +112,7 @@ const homeHref = import.meta.env.BASE_URL;
   }
 
   .site-header__brand:hover {
-    color: var(--color-ink);
+    color: var(--color-foreground);
   }
 
   .site-header__mark {
@@ -118,10 +120,10 @@ const homeHref = import.meta.env.BASE_URL;
     width: 2.5rem;
     height: 2.5rem;
     place-items: center;
-    border: 2px solid var(--color-ink);
+    border: var(--border-strong);
     border-radius: 0.75rem 0.75rem 0.75rem 0.2rem;
-    background: var(--color-yellow);
-    box-shadow: 0.25rem 0.25rem 0 var(--color-ink);
+    background: var(--color-accent-soft);
+    box-shadow: 0.25rem 0.25rem 0 var(--color-foreground);
     font-size: 0.8rem;
     line-height: 1;
     transform: rotate(-5deg);
@@ -134,30 +136,37 @@ const homeHref = import.meta.env.BASE_URL;
   }
 
   .site-header__navigation a {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
     padding-block: 0.35rem;
-    color: var(--color-ink);
+    color: var(--color-foreground);
     font-size: 0.9rem;
     font-weight: 700;
     text-decoration: none;
   }
 
   .site-header__navigation a:hover {
-    color: var(--color-orange);
+    color: var(--color-accent);
   }
 
   .site-header__resume-link {
     padding: 0.7rem 1rem !important;
-    border: 2px solid var(--color-ink);
-    border-radius: var(--pill-radius);
-    background: var(--color-yellow);
-    box-shadow: 0.2rem 0.2rem 0 var(--color-ink);
+    border: var(--border-strong);
+    border-radius: var(--radius-pill);
+    background: var(--color-accent-soft);
+    box-shadow: 0.2rem 0.2rem 0 var(--color-foreground);
   }
 
   .site-header__resume-link:hover {
-    color: var(--color-ink) !important;
-    background: var(--color-coral);
-    transform: translate(-0.1rem, -0.1rem);
+    color: var(--color-foreground) !important;
+    background: var(--color-accent-warm);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .site-header__resume-link:hover {
+      transform: translate(-0.1rem, -0.1rem);
+    }
   }
 
   .site-header__menu-toggle {
@@ -165,9 +174,9 @@ const homeHref = import.meta.env.BASE_URL;
     align-items: center;
     gap: 0.65rem;
     padding: 0.65rem 0.8rem;
-    border: 2px solid var(--color-ink);
-    border-radius: var(--pill-radius);
-    background: var(--color-white);
+    border: var(--border-strong);
+    border-radius: var(--radius-pill);
+    background: var(--color-surface-solid);
     font-size: 0.85rem;
     font-weight: 750;
   }
@@ -201,10 +210,10 @@ const homeHref = import.meta.env.BASE_URL;
       left: 0;
       display: none;
       padding: 0.75rem;
-      border: 2px solid var(--color-ink);
+      border: var(--border-strong);
       border-radius: 1rem;
-      background: var(--color-white);
-      box-shadow: 0.35rem 0.35rem 0 var(--color-ink);
+      background: var(--color-surface-solid);
+      box-shadow: 0.35rem 0.35rem 0 var(--color-foreground);
     }
 
     .site-header[data-menu-open='true'] .site-header__navigation {
@@ -223,12 +232,26 @@ const homeHref = import.meta.env.BASE_URL;
     }
 
     .site-header__navigation a:hover {
-      background: var(--color-paper);
+      background: var(--color-background);
     }
 
     .site-header__resume-link {
       margin-top: 0.45rem;
       text-align: center;
+    }
+  }
+
+  @supports not (backdrop-filter: blur(1rem)) {
+    .site-header {
+      background: var(--color-background);
+    }
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .site-header {
+      background: var(--color-background);
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
     }
   }
 </style>

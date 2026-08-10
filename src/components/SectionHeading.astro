@@ -4,12 +4,13 @@ interface Props {
   title: string;
   description?: string;
   headingId?: string;
+  compact?: boolean;
 }
 
-const { eyebrow, title, description, headingId } = Astro.props;
+const { eyebrow, title, description, headingId, compact = false } = Astro.props;
 ---
 
-<div class="section-heading">
+<div class:list={['section-heading', { 'section-heading--compact': compact }]}>
   <p class="eyebrow">{eyebrow}</p>
   <h2 id={headingId}>{title}</h2>
   {description && <p class="section-heading__description">{description}</p>}
@@ -27,7 +28,30 @@ const { eyebrow, title, description, headingId } = Astro.props;
   .section-heading__description {
     max-width: 38rem;
     margin-top: 1rem;
-    color: var(--color-muted);
+    color: var(--color-foreground-muted);
     font-size: 1.05rem;
+  }
+
+  .section-heading--compact {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: end;
+    column-gap: 1rem;
+    max-width: none;
+  }
+
+  .section-heading--compact h2 {
+    margin-top: 0;
+    font-size: clamp(1.9rem, 4vw, 3rem);
+  }
+
+  @media (max-width: 48rem) {
+    .section-heading--compact {
+      display: block;
+    }
+
+    .section-heading--compact h2 {
+      margin-top: 0.45rem;
+    }
   }
 </style>

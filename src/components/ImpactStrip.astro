@@ -5,7 +5,7 @@ import SectionHeading from './SectionHeading.astro';
 
 <section id="impact" class="impact-strip section" aria-labelledby="impact-title">
   <div class="container">
-    <SectionHeading headingId="impact-title" eyebrow="Impact" title="Proof, in numbers" />
+    <SectionHeading compact headingId="impact-title" eyebrow="Impact" title="Proof, in numbers" />
 
     <ul class="impact-strip__grid">
       {profile.impactMetrics.map((metric) => (
@@ -23,19 +23,20 @@ import SectionHeading from './SectionHeading.astro';
 
 <style>
   .impact-strip {
-    border-block: 1px solid var(--color-ink);
-    background: var(--color-yellow);
+    padding-block: clamp(1.5rem, 3vw, 2.5rem);
+    border-block: var(--border-strong);
+    background: var(--color-accent-soft);
   }
 
   :global(.impact-strip .eyebrow) {
-    color: var(--color-ink);
+    color: var(--color-foreground);
   }
 
   .impact-strip__grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin-top: 2.5rem;
-    border-top: 2px solid var(--color-ink);
+    margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
+    border-top: var(--border-strong);
   }
 
   .impact-strip__metric {
@@ -45,7 +46,7 @@ import SectionHeading from './SectionHeading.astro';
     gap: 1rem;
     min-width: 0;
     padding: 1.5rem clamp(1rem, 3vw, 2rem) 0;
-    border-right: 1px solid rgb(26 26 26 / 0.35);
+    border-right: var(--border-divider);
   }
 
   .impact-strip__metric:first-child {
@@ -57,15 +58,16 @@ import SectionHeading from './SectionHeading.astro';
   }
 
   .impact-strip__value {
-    color: var(--color-orange);
-    font-family: 'Bricolage Grotesque Variable', 'Bricolage Grotesque', sans-serif;
-    font-size: clamp(2.75rem, 6vw, 5rem);
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
     font-weight: 800;
     letter-spacing: -0.07em;
     line-height: 0.9;
   }
 
   .impact-strip__label {
+    color: var(--color-foreground);
     font-weight: 800;
     line-height: 1.2;
     text-transform: capitalize;
@@ -73,7 +75,7 @@ import SectionHeading from './SectionHeading.astro';
 
   .impact-strip__context {
     margin-top: 0.45rem;
-    color: var(--color-muted);
+    color: var(--color-foreground-muted);
     font-size: 0.85rem;
     line-height: 1.35;
   }
@@ -85,9 +87,9 @@ import SectionHeading from './SectionHeading.astro';
 
     .impact-strip__metric,
     .impact-strip__metric:first-child {
-      padding: 1.25rem 0;
+      padding: 1rem 0;
       border-right: 0;
-      border-bottom: 1px solid rgb(26 26 26 / 0.35);
+      border-bottom: var(--border-divider);
     }
 
     .impact-strip__metric:last-child {

@@ -12,6 +12,10 @@ const countGridTracks = async (page: Page, selector: string) =>
 test('homepage renders the exact hero headline and impact metrics', async ({ page }) => {
   await page.goto('/');
 
+  await expect(page.locator('main > .hero')).toHaveAccessibleDescription(
+    'I build trustworthy AI that makes complex systems useful.',
+  );
+
   await expect(
     page.getByRole('heading', {
       level: 1,
@@ -123,6 +127,18 @@ test('homepage exposes verified Medium links and external attributes', async ({ 
     await expect(link).toHaveAttribute('target', '_blank');
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   }
+});
+
+test('homepage keeps representative links at or above 44px touch targets', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  await page.goto('/');
+
+  const measuredHeights = await page
+    .locator('.site-header__brand, .site-header__navigation a, #writing .writing__link, .site-footer a')
+    .evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().height));
+
+  expect(measuredHeights.length).toBeGreaterThan(0);
+  expect(measuredHeights.every((height) => height >= 44)).toBe(true);
 });
 
 test('mobile navigation reflects closed, open, and Escape states', async ({ page }) => {
