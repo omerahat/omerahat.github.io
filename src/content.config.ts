@@ -11,6 +11,10 @@ const projectSchema = z.object({
   technologies: z.array(z.string()),
   href: z.url().optional(),
   hrefLabel: z.string().optional(),
+  paperHref: z.url().optional(),
+  paperHrefLabel: z.string().optional(),
+  scholarHref: z.url().optional(),
+  scholarHrefLabel: z.string().optional(),
   featured: z.boolean(),
   order: z.number().int(),
 });

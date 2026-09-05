@@ -54,10 +54,6 @@ test('homepage renders all featured projects and verified project links', async 
       href: 'https://github.com/omerahat/ExplainableIntrusionDetection-EXID',
     },
     {
-      title: 'Ceramic Tile Defect Detection',
-      href: 'https://github.com/omerahat/matlab-based-defected-ceramic-tiles-dedection',
-    },
-    {
       title: 'ESN-Activities-API',
       href: 'https://github.com/omerahat/ESN-Activities-API',
     },
@@ -73,6 +69,32 @@ test('homepage renders all featured projects and verified project links', async 
 
     await expect(card).toHaveCount(1);
     await expect(link).toHaveAttribute('href', project.href);
+    await expect(link).toHaveAttribute('target', '_blank');
+    await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  }
+
+  const ceramicTileCard = projects.filter({ hasText: 'Ceramic Tile Defect Detection' });
+  const ceramicTileLinks = [
+    {
+      name: 'View on GitHub',
+      href: 'https://github.com/omerahat/matlab-based-defected-ceramic-tiles-dedection',
+    },
+    {
+      name: 'Read paper',
+      href: 'https://dergipark.org.tr/en/pub/aupse/article/1498129',
+    },
+    {
+      name: 'Google Scholar',
+      href: 'https://scholar.google.it/citations?view_op=view_citation&hl=en&user=1LIiTREAAAAJ&citation_for_view=1LIiTREAAAAJ:_FxGoFyzp5QC',
+    },
+  ];
+
+  await expect(ceramicTileCard).toHaveCount(1);
+  await expect(ceramicTileCard.getByRole('link')).toHaveCount(3);
+  for (const projectLink of ceramicTileLinks) {
+    const link = ceramicTileCard.getByRole('link', { name: projectLink.name, exact: true });
+
+    await expect(link).toHaveAttribute('href', projectLink.href);
     await expect(link).toHaveAttribute('target', '_blank');
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   }

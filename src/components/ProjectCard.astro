@@ -45,10 +45,26 @@ const { Content } = await render(project);
       </ul>
     </div>
 
-    {data.href && (
-      <a class="project-card__link" href={data.href} target="_blank" rel="noopener noreferrer">
-        {data.hrefLabel ?? 'View project'} <span aria-hidden="true">&rarr;</span>
-      </a>
+    {(data.href || data.paperHref || data.scholarHref) && (
+      <div class="project-card__links">
+        {data.href && (
+          <a class="project-card__link" href={data.href} target="_blank" rel="noopener noreferrer">
+            {data.hrefLabel ?? 'View project'} <span aria-hidden="true">&rarr;</span>
+          </a>
+        )}
+
+        {data.paperHref && (
+          <a class="project-card__link" href={data.paperHref} target="_blank" rel="noopener noreferrer">
+            {data.paperHrefLabel ?? 'Read paper'} <span aria-hidden="true">&rarr;</span>
+          </a>
+        )}
+
+        {data.scholarHref && (
+          <a class="project-card__link" href={data.scholarHref} target="_blank" rel="noopener noreferrer">
+            {data.scholarHrefLabel ?? 'Google Scholar'} <span aria-hidden="true">&rarr;</span>
+          </a>
+        )}
+      </div>
     )}
   </div>
 </article>
@@ -174,6 +190,13 @@ const { Content } = await render(project);
 
   .project-card--featured .project-card__list .pill {
     background: var(--color-surface-solid);
+  }
+
+  .project-card__links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 0.6rem;
   }
 
   .project-card__link {

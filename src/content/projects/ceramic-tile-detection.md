@@ -12,6 +12,10 @@ technologies:
   - "Machine learning"
 href: "https://github.com/omerahat/matlab-based-defected-ceramic-tiles-dedection"
 hrefLabel: "View on GitHub"
+paperHref: "https://dergipark.org.tr/en/pub/aupse/article/1498129"
+paperHrefLabel: "Read paper"
+scholarHref: "https://scholar.google.it/citations?view_op=view_citation&hl=en&user=1LIiTREAAAAJ&citation_for_view=1LIiTREAAAAJ:_FxGoFyzp5QC"
+scholarHrefLabel: "Google Scholar"
 featured: true
 order: 3
 ---
