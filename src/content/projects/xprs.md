@@ -11,8 +11,10 @@ technologies:
   - "PyTorch"
   - "Deep learning"
   - "Explainable AI"
+poster: "/XPRS-poster-en.jpeg"
+posterAlt: "XPRS explainable product recommendation system research poster"
 featured: true
 order: 1
 ---
 
-I lead XPRS as a senior R&D graduation project supported by Wingie Enuygun Group. I am designing a two-tower neural network that connects personalized recommendations with explanations intended to strengthen user trust in e-commerce.
+I lead XPRS as a senior R&D graduation project in collaboration with Wingie Enuygun Group. I am designing a two-tower neural network that connects personalized recommendations with explanations intended to strengthen user trust in e-commerce.

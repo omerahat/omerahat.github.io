@@ -35,7 +35,10 @@ test('experience entries render scannable evidence lists', async ({ page }) => {
   await page.goto('/');
 
   const experienceBodies = page.locator('#experience .experience__body');
-  await expect(experienceBodies).toHaveCount(10);
+  await expect(experienceBodies).toHaveCount(11);
+
+  const wingie = page.locator('#experience').getByRole('article').filter({ hasText: 'Wingie Enuygun Group' });
+  await expect(wingie).toHaveCount(1);
 
   for (let index = 0; index < await experienceBodies.count(); index += 1) {
     const evidence = experienceBodies.nth(index);
@@ -125,13 +128,22 @@ test('project contribution and outcome details stack vertically', async ({ page 
   expect(detailColumns).toEqual([1, 1, 1, 1, 1, 1]);
 });
 
-test('XPRS project keeps the unverified poster unpublished', async ({ page }) => {
+test('XPRS project exposes its research poster', async ({ page }) => {
   await page.goto('/');
 
   const xprsCard = page.locator('#work').getByRole('article').filter({ hasText: 'XPRS' });
-  await expect(xprsCard).toContainText('supported by Wingie Enuygun Group');
-  await expect(xprsCard.locator('.project-card__poster')).toHaveCount(0);
-  expect((await page.request.get('/XPRS-poster-en.jpeg')).status()).toBe(404);
+  const posterAlt = 'XPRS explainable product recommendation system research poster';
+  const poster = xprsCard.getByRole('img', { name: posterAlt, exact: true });
+  const posterLink = xprsCard.getByRole('link', {
+    name: 'Open XPRS research poster at full size',
+    exact: true,
+  });
+
+  await expect(poster).toBeVisible();
+  await expect(poster).toHaveAttribute('src', '/XPRS-poster-en.jpeg');
+  await expect(posterLink).toHaveAttribute('href', '/XPRS-poster-en.jpeg');
+  await expect(posterLink).toHaveAttribute('target', '_blank');
+  await expect(posterLink).toHaveAttribute('rel', 'noopener noreferrer');
 });
 
 test('homepage exposes the exact resume mailto and public contact links', async ({ page }) => {
@@ -169,9 +181,6 @@ test('homepage keeps unverified writing out of the public selection', async ({ p
   await expect(page.locator('#writing')).toHaveCount(0);
   await expect(page.getByRole('link', { name: 'Writing', exact: true })).toHaveCount(0);
   await expect(page.getByRole('link', { name: 'Medium', exact: true })).toHaveCount(0);
-  await expect(
-    page.locator('#experience').getByRole('article').filter({ hasText: 'Wingie Enuygun Group' }),
-  ).toHaveCount(0);
 
   for (const seasonalEntry of [
     { company: 'ASELSAN', period: 'Spring 2024' },
