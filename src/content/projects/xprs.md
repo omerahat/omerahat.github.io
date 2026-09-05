@@ -11,6 +11,8 @@ technologies:
   - "PyTorch"
   - "Deep learning"
   - "Explainable AI"
+poster: "/XPRS_poster.png"
+posterAlt: "XPRS explainable product recommendation system research poster"
 featured: true
 order: 1
 ---

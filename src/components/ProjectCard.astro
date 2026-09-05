@@ -30,6 +30,25 @@ const { Content } = await render(project);
     </div>
   </div>
 
+  {data.poster && data.posterAlt && (
+    <figure class="project-card__poster">
+      <a
+        class="project-card__poster-link"
+        href={data.poster}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`Open ${data.title} research poster at full size`}
+      >
+        <img
+          src={data.poster}
+          alt={data.posterAlt}
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+    </figure>
+  )}
+
   <div class="project-card__footer">
     <div>
       <p class="project-card__label">Signals</p>
@@ -146,6 +165,31 @@ const { Content } = await render(project);
     margin: 0;
   }
 
+  .project-card__poster {
+    display: grid;
+    grid-column: 1 / -1;
+    gap: 0.6rem;
+    margin: 0;
+  }
+
+  .project-card__poster-link {
+    display: block;
+    overflow: hidden;
+    border: var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--color-surface-solid);
+    box-shadow: var(--shadow-card);
+  }
+
+  .project-card__poster-link:hover {
+    color: inherit;
+  }
+
+  .project-card__poster img {
+    width: 100%;
+    height: auto;
+  }
+
   .project-card__footer {
     display: grid;
     gap: 1.15rem;
@@ -195,6 +239,10 @@ const { Content } = await render(project);
   }
 
   @media (hover: hover) and (pointer: fine) {
+    .project-card__poster-link:hover {
+      transform: translateY(-0.1rem);
+    }
+
     .project-card__link:hover {
       transform: translateY(-0.1rem);
     }
