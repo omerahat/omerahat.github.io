@@ -13,7 +13,7 @@ technologies:
   - "NSL-KDD"
 href: "https://github.com/omerahat/ExplainableIntrusionDetection-EXID"
 hrefLabel: "View on GitHub"
-featured: true
+featured: false
 order: 2
 ---
 

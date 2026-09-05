@@ -1,6 +1,32 @@
-# Personal Website
+# Ömer Ahat — AI/ML Portfolio
 
-Static Astro portfolio for Omer Ahat.
+This repository contains Ömer Ahat's personal AI/ML portfolio, built as a static
+Astro site. It presents production ML systems, applied research, explainability,
+recommendation systems, computer vision, and data tooling through selected work,
+experience, and writing.
+
+## Content Structure
+
+- `src/data/profile.ts` contains the public identity, contact links, impact metrics,
+  skills, education, publication, and community information.
+- `src/content/experience/` contains the reverse-chronological experience timeline.
+  Each entry keeps its structured frontmatter and uses Markdown evidence bullets.
+- `src/content/projects/` contains project cards and their structured metadata. The
+  featured selection mixes verified public projects with anonymized, public-safe AI
+  case studies.
+- `src/content/writing/` contains the featured technical articles and their verified
+  external links.
+- `src/content.config.ts` defines the schemas for the experience, project, and
+  writing collections.
+- `src/components/` and `src/styles/` contain the page structure and visual system.
+
+## Public-Content Boundary
+
+Case studies use approved aggregate metrics and general techniques while omitting
+employer names and internal system names. Project and article links must be public
+and verified. The site does not add private work details, phone or Telegram contact
+data, analytics, CMS or backend code, or direct resume downloads. The resume action
+remains a prefilled email request.
 
 ## Local Development
 
@@ -11,9 +37,12 @@ npm ci
 npm run dev
 ```
 
-The local server runs at `http://localhost:4321` by default. Set `SITE_URL` and
-`BASE_PATH` before a build when checking a deployment target other than the
-default user site.
+The local server runs at `http://localhost:4321` by default. For the default user
+site, build with:
+
+```bash
+SITE_URL=https://omerahat.github.io BASE_PATH=/ npm run build
+```
 
 ## Commands
 
@@ -23,10 +52,10 @@ default user site.
 | `npm run dev` | Start the local development server |
 | `npm run check` | Run Astro and TypeScript checks |
 | `npm run build` | Build the static site into `dist/` |
-| `npm run preview` | Preview the production build locally |
 | `npm run test:e2e` | Run the Playwright end-to-end suite |
+| `npm run preview` | Preview the production build locally |
 
-Run the checks and build locally with:
+Run the checks, build, browser tests, and local production preview with:
 
 ```bash
 npm run check
@@ -34,18 +63,6 @@ npm run build
 npm run test:e2e
 npm run preview
 ```
-
-## Content Updates
-
-- Edit `src/data/profile.ts` for the public identity, contact links, impact metrics, skills, education, publication, and community information.
-- Add or update project entries in `src/content/projects/*.md`.
-- Add or update experience entries in `src/content/experience/*.md`.
-- Add or update writing entries in `src/content/writing/*.md`.
-- Edit `src/components/` and `src/styles/` only when changing the page structure or visual presentation.
-
-Keep project and article links public and verified. Do not add private work details,
-phone or Telegram contact data, backend or CMS code, analytics, or a direct resume
-download. The resume action remains a prefilled email request.
 
 ## GitHub Pages Deployment
 

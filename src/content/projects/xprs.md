@@ -17,4 +17,4 @@ featured: true
 order: 1
 ---
 
-XPRS is a senior R&D graduation project conducted with Wingie Enuygun Group. It explores how explainability can make personalized product recommendations more useful and trustworthy.
+I lead XPRS as a senior R&D graduation project in collaboration with Wingie Enuygun Group. I am designing a two-tower neural network that connects personalized recommendations with explanations intended to strengthen user trust in e-commerce.

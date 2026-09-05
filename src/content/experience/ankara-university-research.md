@@ -14,4 +14,5 @@ focus:
 order: 4
 ---
 
-Conducted AI and machine learning research across image processing, computer vision, explainable AI, and federated learning. The work included an ML-powered ceramic tile defect detection model and research into transparent, privacy-aware decentralized systems.
+- Conducted AI and machine learning research across **image processing, computer vision, explainable AI, and federated learning**.
+- Developed an **ML-powered ceramic tile defect detection** model and researched transparent, privacy-aware decentralized systems.

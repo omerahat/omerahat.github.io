@@ -13,7 +13,7 @@ technologies:
   - "Web scraping"
 href: "https://github.com/omerahat/ESN-Activities-API"
 hrefLabel: "View on GitHub"
-featured: true
+featured: false
 order: 4
 ---
 

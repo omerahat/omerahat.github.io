@@ -13,4 +13,5 @@ focus:
 order: 6
 ---
 
-Worked as a software engineer at Ankara University maintaining data integrity across localized pages, resolving technical discrepancies to enhance global accessibility and professional digital presence.
+- Maintained **data integrity** across localized pages at Ankara University.
+- Resolved technical discrepancies to improve **global accessibility** and professional digital presence.

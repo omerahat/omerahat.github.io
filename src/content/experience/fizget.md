@@ -13,4 +13,5 @@ focus:
 order: 11
 ---
 
-Contributed to a healthcare-focused AI project for cancer detection and anomaly identification through medical imaging. Developed classification models and used Python-based machine learning workflows to analyse mammography data.
+- Contributed to a healthcare-focused AI project for **cancer detection and anomaly identification** through medical imaging.
+- Developed **classification models** and used Python-based machine learning workflows to analyse mammography data.

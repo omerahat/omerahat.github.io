@@ -12,4 +12,5 @@ focus:
 order: 9
 ---
 
-Built automated data pipelines and large-scale web scraping tools for an e-commerce AI startup. The work processed more than 2 billion product records and improved processing speed by 35%.
+- Built **automated data pipelines** and large-scale web scraping tools for an e-commerce AI startup.
+- Processed more than **2 billion product records** and improved processing speed by **35%**.

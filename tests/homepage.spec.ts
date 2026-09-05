@@ -29,6 +29,24 @@ test('homepage renders the exact hero headline and impact metrics', async ({ pag
   await expect(metrics).toHaveText(['97%', '2B+', '3.3x']);
 });
 
+test('experience entries render scannable evidence lists', async ({ page }) => {
+  await page.goto('/');
+
+  const experienceBodies = page.locator('#experience .experience__body');
+  await expect(experienceBodies).toHaveCount(11);
+
+  for (let index = 0; index < await experienceBodies.count(); index += 1) {
+    const evidence = experienceBodies.nth(index);
+    await expect(evidence.locator('ul')).toHaveCount(1);
+    await expect(evidence.locator('strong')).not.toHaveCount(0);
+  }
+
+  const turknet = experienceBodies.filter({ hasText: '60% to 92% weighted F1' });
+  await expect(turknet.getByRole('list')).toHaveCount(1);
+  await expect(turknet.getByRole('listitem')).toHaveCount(5);
+  await expect(turknet.locator('strong').filter({ hasText: '60%' })).toBeVisible();
+});
+
 test('homepage renders all featured projects and verified project links', async ({ page }) => {
   await page.goto('/');
 
@@ -36,9 +54,9 @@ test('homepage renders all featured projects and verified project links', async 
   const projects = work.getByRole('article');
   const projectTitles = [
     'XPRS',
-    'EXID',
+    'Applied AI Systems',
+    'Product Recognition System',
     'Ceramic Tile Defect Detection',
-    'ESN-Activities-API',
     'The Big Score',
     'Federated Learning with Flower',
   ];
@@ -47,16 +65,10 @@ test('homepage renders all featured projects and verified project links', async 
   for (const title of projectTitles) {
     await expect(work.getByRole('heading', { name: title, exact: true })).toBeVisible();
   }
+  await expect(work.getByRole('heading', { name: 'EXID', exact: true })).toHaveCount(0);
+  await expect(work.getByRole('heading', { name: 'ESN-Activities-API', exact: true })).toHaveCount(0);
 
   const verifiedProjects = [
-    {
-      title: 'EXID',
-      href: 'https://github.com/omerahat/ExplainableIntrusionDetection-EXID',
-    },
-    {
-      title: 'ESN-Activities-API',
-      href: 'https://github.com/omerahat/ESN-Activities-API',
-    },
     {
       title: 'The Big Score',
       href: 'https://github.com/omerahat/gold_rush_demo',
@@ -99,6 +111,16 @@ test('homepage renders all featured projects and verified project links', async 
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   }
 
+});
+
+test('project contribution and outcome details stack vertically', async ({ page }) => {
+  await page.goto('/');
+
+  const detailColumns = await page.locator('#work .project-card__details').evaluateAll((details) =>
+    details.map((detail) => getComputedStyle(detail).gridTemplateColumns.trim().split(/\s+/).length),
+  );
+
+  expect(detailColumns).toEqual([1, 1, 1, 1, 1, 1]);
 });
 
 test('XPRS project exposes its research poster', async ({ page }) => {
