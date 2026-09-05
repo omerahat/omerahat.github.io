@@ -135,8 +135,8 @@ test('XPRS project exposes its research poster', async ({ page }) => {
   });
 
   await expect(poster).toBeVisible();
-  await expect(poster).toHaveAttribute('src', '/XPRS_poster.png');
-  await expect(posterLink).toHaveAttribute('href', '/XPRS_poster.png');
+  await expect(poster).toHaveAttribute('src', '/XPRS-poster-en.jpeg');
+  await expect(posterLink).toHaveAttribute('href', '/XPRS-poster-en.jpeg');
   await expect(posterLink).toHaveAttribute('target', '_blank');
   await expect(posterLink).toHaveAttribute('rel', 'noopener noreferrer');
 });
