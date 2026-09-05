@@ -77,8 +77,24 @@ test('homepage renders all featured projects and verified project links', async 
     await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
   }
 
-  const xprsCard = projects.filter({ hasText: 'XPRS' });
-  await expect(xprsCard.getByRole('link')).toHaveCount(0);
+});
+
+test('XPRS project exposes its research poster', async ({ page }) => {
+  await page.goto('/');
+
+  const xprsCard = page.locator('#work').getByRole('article').filter({ hasText: 'XPRS' });
+  const posterAlt = 'XPRS explainable product recommendation system research poster';
+  const poster = xprsCard.getByRole('img', { name: posterAlt, exact: true });
+  const posterLink = xprsCard.getByRole('link', {
+    name: 'Open XPRS research poster at full size',
+    exact: true,
+  });
+
+  await expect(poster).toBeVisible();
+  await expect(poster).toHaveAttribute('src', '/XPRS_poster.png');
+  await expect(posterLink).toHaveAttribute('href', '/XPRS_poster.png');
+  await expect(posterLink).toHaveAttribute('target', '_blank');
+  await expect(posterLink).toHaveAttribute('rel', 'noopener noreferrer');
 });
 
 test('homepage exposes the exact resume mailto and public contact links', async ({ page }) => {
