@@ -13,4 +13,4 @@ focus:
 order: 6
 ---
 
-Worked in a research department on automation and software solutions that improved the department's quality and day-to-day workflows.
+Worked as a software engineer at Ankara University maintaining data integrity across localized pages, resolving technical discrepancies to enhance global accessibility and professional digital presence.

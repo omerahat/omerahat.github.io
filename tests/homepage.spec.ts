@@ -26,7 +26,7 @@ test('homepage renders the exact hero headline and impact metrics', async ({ pag
 
   const metrics = page.locator('#impact .impact-strip__value');
   await expect(metrics).toHaveCount(3);
-  await expect(metrics).toHaveText(['97%', '2B+', '2x']);
+  await expect(metrics).toHaveText(['97%', '2B+', '3.3x']);
 });
 
 test('homepage renders all featured projects and verified project links', async ({ page }) => {
@@ -34,9 +34,16 @@ test('homepage renders all featured projects and verified project links', async 
 
   const work = page.locator('#work');
   const projects = work.getByRole('article');
-  const projectTitles = ['XPRS', 'EXID', 'Ceramic Tile Defect Detection', 'ESN-Activities-API'];
+  const projectTitles = [
+    'XPRS',
+    'EXID',
+    'Ceramic Tile Defect Detection',
+    'ESN-Activities-API',
+    'The Big Score',
+    'Federated Learning with Flower',
+  ];
 
-  await expect(projects).toHaveCount(4);
+  await expect(projects).toHaveCount(6);
   for (const title of projectTitles) {
     await expect(work.getByRole('heading', { name: title, exact: true })).toBeVisible();
   }
@@ -53,6 +60,10 @@ test('homepage renders all featured projects and verified project links', async 
     {
       title: 'ESN-Activities-API',
       href: 'https://github.com/omerahat/ESN-Activities-API',
+    },
+    {
+      title: 'The Big Score',
+      href: 'https://github.com/omerahat/gold_rush_demo',
     },
   ];
 
@@ -326,10 +337,8 @@ test('experience timeline exposes machine-readable start and end dates', async (
   await page.goto('/');
 
   const experience = page.locator('#experience');
-  const turknet = experience.getByRole('article').filter({ hasText: 'AI Engineer Intern' });
-  const superhood = experience
-    .getByRole('article')
-    .filter({ hasText: 'Full Stack ML Intern (Erasmus+)' });
+  const turknet = experience.getByRole('article').filter({ hasText: 'Turknet' });
+  const superhood = experience.getByRole('article').filter({ hasText: 'Superhood Oy' });
 
   await expect(turknet.locator('time')).toHaveAttribute('datetime', '2026-04-01');
   await expect(turknet.locator('time')).toHaveText('April 2026 - Present');

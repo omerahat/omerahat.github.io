@@ -6,10 +6,11 @@ startDate: "2026-04-01"
 location: "Ankara, Türkiye"
 current: true
 focus:
-  - "AI engineering"
-  - "Machine learning"
+  - "NLP"
+  - "LLM applications"
+  - "MLOps"
   - "Data analysis"
 order: 1
 ---
 
-Working on applied AI engineering and data-driven automation with a focus on useful, reliable machine learning systems.
+Working on applied AI engineering and data-driven automation with a focus on useful, reliable machine learning systems. Improved a two-stage Turkish survey-intent classifier from 60% to 92% weighted F1 through BERT fine-tuning, LLM-assisted augmentation, and label refinement, and automated weekly labeling on Airflow, roughly a 3,000x speedup over manual annotation. Built an LLM-powered document parsing API with a 3.3x overall speedup (8x on a critical subsystem) and 48% lower token costs, plus an internal multi-model LLM evaluation platform, a containerized Whisper service, an MCP integration for the team's AI coding assistant, and a Customer Effort Score methodology adopted as an internal initiative.

@@ -53,7 +53,7 @@ export const profile = {
   tagline: 'I build trustworthy AI that makes complex systems useful.',
   email: 'omerahatcs@gmail.com',
   location: 'Ankara, Türkiye',
-  graduation: 'July 2026',
+  graduation: 'June 2026',
   linkedin: 'https://www.linkedin.com/in/omerahat',
   github: 'https://github.com/omerahat',
   medium: 'https://omerahat.medium.com',
@@ -70,9 +70,9 @@ export const profile = {
       context: 'large-scale data pipeline at Artifica.io',
     },
     {
-      value: '2x',
-      label: 'Erasmus+ internships',
-      context: 'research and ML work in Helsinki and Padova',
+      value: '3.3x',
+      label: 'faster LLM document processing',
+      context: 'enterprise document parsing API at Turknet',
     },
   ],
   skills: [
@@ -86,7 +86,11 @@ export const profile = {
     },
     {
       category: 'Data and cloud',
-      items: ['Pandas', 'NumPy', 'Polars', 'Jupyter', 'Parquet', 'GCP', 'Vertex AI'],
+      items: ['Pandas', 'NumPy', 'Polars', 'Scrapy', 'BeautifulSoup', 'Jupyter', 'Parquet', 'GCP', 'Vertex AI'],
+    },
+    {
+      category: 'LLM and automation',
+      items: ['vLLM', 'LiteLLM', 'MCP', 'Apache Airflow', 'ELK'],
     },
     {
       category: 'Backend and frontend',
@@ -104,8 +108,8 @@ export const profile = {
   education: {
     institution: 'Ankara University',
     degree: 'Bachelor of Science in Computer Engineering',
-    period: 'September 2021 - July 2026',
-    gpa: '3.73/4.00',
+    period: 'September 2021 - June 2026',
+    gpa: '3.75/4.00',
     capstone: 'XPRS — Explainable Product Recommendation System',
   },
   publication: {
@@ -135,13 +139,13 @@ export const profile = {
       organization: 'ASELSAN Future Talents',
       role: 'Participant (top performer)',
       period: 'Spring 2024',
-      detail: 'Selected among 101 students from 101 universities.',
+      detail: 'Selected as the top-performing student from Ankara University among 101 participants.',
     },
     {
       organization: 'YetGen Young Talents',
       role: 'First-place participant',
       period: 'Spring 2023',
-      detail: 'Selected among 300+ teams and 4,000+ participants.',
+      detail: 'Won first place in a 24-hour startup competition; presented the winning idea to a live audience of 4,000+ people.',
     },
     {
       organization: 'Harvard Aspire Leaders Program',

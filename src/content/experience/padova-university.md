@@ -1,6 +1,6 @@
 ---
 company: "Padova University"
-role: "Research Intern (Erasmus+)"
+role: "Undergraduate Research Intern (Erasmus+)"
 period: "June 2024 - September 2024"
 startDate: "2024-06-01"
 endDate: "2024-09-30"

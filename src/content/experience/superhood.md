@@ -1,6 +1,6 @@
 ---
 company: "Superhood Oy"
-role: "Full Stack ML Intern (Erasmus+)"
+role: "AI Engineer Intern (Full Stack ML, Erasmus+)"
 period: "July 2025 - September 2025"
 startDate: "2025-07-01"
 endDate: "2025-09-30"
@@ -10,8 +10,9 @@ focus:
   - "Product classification"
   - "Transfer learning"
   - "Google Cloud Platform"
+  - "Knowledge graphs"
   - "Data pipelines"
 order: 3
 ---
 
-Engineered an on-device product classification model that improved accuracy from 16% to 97% across more than 60 categories. Built a hybrid cloud system with Google Vision API as a fallback and automated processing for more than 35,000 product images.
+Engineered an on-device product classification model that improved accuracy from 73% to 97% across more than 60 categories through transfer learning and fine-tuning. Designed a hybrid AI system on GCP with Google Vision API as a fallback, expanding product recognition coverage by over 600%, and constructed a product knowledge graph over 45,000+ retail items. Automated processing of 35,000+ product images with Playwright and built an MLOps continuous learning loop on Vertex AI for cloud-verified prediction capture and retraining.
