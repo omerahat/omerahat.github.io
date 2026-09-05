@@ -20,12 +20,13 @@ export type Profile = {
   name: string;
   headline: string;
   tagline: string;
+  targetRoles: string[];
+  availability: string;
   email: string;
   location: string;
   graduation: string;
   linkedin: string;
   github: string;
-  medium: string;
   researchInterests: string[];
   impactMetrics: ImpactMetric[];
   skills: SkillGroup[];
@@ -51,12 +52,13 @@ export const profile = {
   name: 'Ömer Ahat',
   headline: 'AI Engineer & Explainable ML Researcher',
   tagline: 'I build trustworthy AI that makes complex systems useful.',
+  targetRoles: ['ML Engineer', 'AI Engineer', 'Applied Scientist', 'Data Scientist'],
+  availability: 'Remote preferred; hybrid acceptable in Türkiye and Europe.',
   email: 'omerahatcs@gmail.com',
   location: 'Ankara, Türkiye',
   graduation: 'June 2026',
   linkedin: 'https://www.linkedin.com/in/omerahat',
   github: 'https://github.com/omerahat',
-  medium: 'https://omerahat.medium.com',
   researchInterests: ['XAI', 'Federated learning', 'Computer vision', 'Data systems'],
   impactMetrics: [
     {
@@ -72,21 +74,21 @@ export const profile = {
     {
       value: '3.3x',
       label: 'faster LLM document processing',
-      context: 'enterprise document parsing API at Turknet',
+      context: 'enterprise document parsing API',
     },
   ],
   skills: [
     {
       category: 'Languages',
-      items: ['Python', 'SQL', 'Java', 'C', 'MATLAB', 'C#', 'TypeScript', 'JavaScript'],
+      items: ['Python', 'SQL', 'Java', 'C', 'MATLAB'],
     },
     {
       category: 'Machine learning',
-      items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'LightGBM', 'XGBoost', 'Flower'],
+      items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Flower'],
     },
     {
       category: 'Data and cloud',
-      items: ['Pandas', 'NumPy', 'Polars', 'Scrapy', 'BeautifulSoup', 'Jupyter', 'Parquet', 'GCP', 'Vertex AI'],
+      items: ['Pandas', 'NumPy', 'Polars', 'Scrapy', 'BeautifulSoup', 'GCP', 'Vertex AI'],
     },
     {
       category: 'LLM and automation',
@@ -94,26 +96,26 @@ export const profile = {
     },
     {
       category: 'Backend and frontend',
-      items: ['FastAPI', 'Flask', 'ASP.NET Core', 'React', 'Vite', 'Tailwind CSS'],
+      items: ['FastAPI', 'React', 'Vite', 'Tailwind CSS'],
     },
     {
       category: 'Databases and tools',
-      items: ['PostgreSQL', 'Supabase', 'SQLite', 'MySQL', 'Docker', 'Git', 'Playwright'],
+      items: ['SQLite', 'MySQL', 'Docker', 'Git', 'Playwright'],
     },
     {
       category: 'Research',
-      items: ['SHAP', 'Explainable AI', 'Federated learning', 'Computer vision', 'MLOps'],
+      items: ['Explainable AI', 'Federated learning', 'Computer vision', 'MLOps'],
     },
   ],
   education: {
     institution: 'Ankara University',
     degree: 'Bachelor of Science in Computer Engineering',
-    period: 'September 2021 - June 2026',
+    period: 'June 2026',
     gpa: '3.75/4.00',
     capstone: 'XPRS — Explainable Product Recommendation System',
   },
   publication: {
-    title: 'Efficient Surface Crack Detection In Ceramic Tiles Using Matlab Image Processing',
+    title: 'Efficient Surface Crack Detection in Ceramic Tiles Using MATLAB Image Processing',
     published: 'July 2024',
     detail: '97.5% accuracy and 0.8 seconds per unit',
   },

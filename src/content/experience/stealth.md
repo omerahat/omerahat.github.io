@@ -12,4 +12,4 @@ focus:
 order: 7
 ---
 
-- Founded and developed an **early-stage consumer-to-consumer rental platform**.
+- Worked on a **consumer-to-consumer rental platform**.

@@ -1,5 +1,5 @@
 ---
-title: "Smarter Search, Deeper Insights: Unlocking Data with Knowledge Graphs"
+title: "Product Knowledge Graphs for Search"
 excerpt: "A product knowledge graph organizes product data such as features, categories, and brands as an interconnected network of nodes."
 published: 2025-09-09
 tags:
@@ -8,7 +8,7 @@ tags:
   - "Search"
 href: "https://omerahat.medium.com/smarter-search-deeper-insights-unlocking-data-with-knowledge-graphs-70894dbadc1e"
 language: "English"
-featured: true
+featured: false
 order: 1
 ---
 

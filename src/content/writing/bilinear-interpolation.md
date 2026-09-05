@@ -8,7 +8,7 @@ tags:
   - "Computer vision"
 href: "https://omerahat.medium.com/application-of-bilinear-interpolation-for-image-resizing-with-matlab-2b073cfed681"
 language: "English"
-featured: true
+featured: false
 order: 2
 ---
 

@@ -25,7 +25,7 @@ const experienceSchema = z.object({
   company: z.string(),
   role: z.string(),
   period: z.string(),
-  startDate: z.iso.date(),
+  startDate: z.iso.date().optional(),
   endDate: z.iso.date().optional(),
   location: z.string().optional(),
   current: z.boolean(),

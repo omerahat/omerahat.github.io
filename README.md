@@ -14,8 +14,8 @@ experience, and writing.
 - `src/content/projects/` contains project cards and their structured metadata. The
   featured selection mixes verified public projects with anonymized, public-safe AI
   case studies.
-- `src/content/writing/` contains the featured technical articles and their verified
-  external links.
+- `src/content/writing/` contains archived writing entries. An entry is featured only
+  after its authorship and external link have been verified.
 - `src/content.config.ts` defines the schemas for the experience, project, and
   writing collections.
 - `src/components/` and `src/styles/` contain the page structure and visual system.

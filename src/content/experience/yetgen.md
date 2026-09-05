@@ -1,17 +1,13 @@
 ---
 company: "YetGen"
-role: "Participant, Young Talents Program"
-period: "April 2023 - June 2023"
-startDate: "2023-04-01"
-endDate: "2023-06-30"
+role: "Program Winner, Young Talents Program"
+period: "Spring 2023"
 current: false
 focus:
-  - "Leadership"
   - "Entrepreneurship"
-  - "Social innovation"
-  - "Career development"
+  - "Social impact"
 order: 10
 ---
 
-- Completed a **21st-century competencies programme** focused on leadership, career development, financial literacy, and social innovation.
-- The team was selected to present its startup idea among more than **300 teams** and **4,000 participants**.
+- Won **first place** in a 24-hour startup competition by developing a business plan and investor pitch for a social impact venture.
+- Presented the winning idea to a live audience of **4,000+ people**.

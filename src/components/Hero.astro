@@ -3,12 +3,20 @@ import { profile } from '../data/profile';
 import IllustratedAvatar from './IllustratedAvatar.astro';
 ---
 
-<section class="hero section" aria-labelledby="hero-title" aria-describedby="hero-tagline">
+<section
+  class="hero section"
+  aria-labelledby="hero-title"
+  aria-describedby="hero-tagline hero-roles hero-availability"
+>
   <div class="container hero__grid">
     <div class="hero__copy">
       <p class="eyebrow">AI / RESEARCH / SYSTEMS</p>
       <h1 id="hero-title">{profile.headline}</h1>
       <p id="hero-tagline" class="hero__tagline">{profile.tagline}</p>
+      <p id="hero-roles" class="hero__roles">
+        <strong>Open to:</strong> {profile.targetRoles.join(' · ')}
+      </p>
+      <p id="hero-availability" class="hero__availability">{profile.availability}</p>
 
       <div class="hero__actions">
         <a class="button button--primary" href="#work">
@@ -87,6 +95,26 @@ import IllustratedAvatar from './IllustratedAvatar.astro';
     color: var(--color-foreground-muted);
     font-size: clamp(1.1rem, 2.2vw, 1.45rem);
     line-height: 1.35;
+  }
+
+  .hero__roles,
+  .hero__availability {
+    max-width: 38rem;
+    color: var(--color-foreground-muted);
+    font-size: 0.92rem;
+  }
+
+  .hero__roles {
+    margin-top: 1rem;
+  }
+
+  .hero__roles strong {
+    color: var(--color-foreground);
+    font-weight: 800;
+  }
+
+  .hero__availability {
+    margin-top: 0.35rem;
   }
 
   .hero__meta {

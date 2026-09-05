@@ -12,5 +12,5 @@ focus:
 order: 9
 ---
 
-- Built **automated data pipelines** and large-scale web scraping tools for an e-commerce AI startup.
-- Processed more than **2 billion product records** and improved processing speed by **35%**.
+- Engineered a Python web scraping pipeline with **Scrapy**, **BeautifulSoup**, and **Pandas**.
+- Processed more than **2 billion records**, reducing data collection time by **35%**.

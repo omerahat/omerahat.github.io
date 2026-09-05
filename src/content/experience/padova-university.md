@@ -9,10 +9,10 @@ current: false
 focus:
   - "Network protocols"
   - "Data transmission"
-  - "Telecommunications"
   - "Statistical modelling"
 order: 5
 ---
 
-- Researched data transmission efficiency in **SR ARQ network protocols** during an Erasmus+ placement.
-- Analysed the **Age of Information** and used **statistical models and simulations** to study packet delay, loss, and acknowledgement strategies.
+- Analysed and optimized **SR-ARQ network protocols** to improve data freshness and transmission efficiency.
+- Designed **statistical models and simulations** for packet delay, loss, and acknowledgement strategies.
+- Applied **time-series analysis** to evaluate network latency improvements.

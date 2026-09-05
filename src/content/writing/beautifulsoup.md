@@ -8,7 +8,7 @@ tags:
   - "Web scraping"
 href: "https://omerahat.medium.com/python-ve-beautifulsoup-modülü-ile-web-scraping-9d26816dc86d"
 language: "Turkish"
-featured: true
+featured: false
 order: 3
 ---
 

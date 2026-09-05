@@ -1,10 +1,13 @@
 ---
+import { getCollection } from 'astro:content';
 import { profile } from '../data/profile';
+
+const hasFeaturedWriting = (await getCollection('writing')).some((article) => article.data.featured);
 
 const navItems = [
   { label: 'Work', href: '#work' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Writing', href: '#writing' },
+  ...(hasFeaturedWriting ? [{ label: 'Writing', href: '#writing' }] : []),
   { label: 'About', href: '#about' },
   { label: 'Contact', href: '#contact' },
 ] as const;

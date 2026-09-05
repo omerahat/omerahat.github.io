@@ -13,7 +13,7 @@ test('homepage renders the exact hero headline and impact metrics', async ({ pag
   await page.goto('/');
 
   await expect(page.locator('main > .hero')).toHaveAccessibleDescription(
-    'I build trustworthy AI that makes complex systems useful.',
+    'I build trustworthy AI that makes complex systems useful. Open to: ML Engineer · AI Engineer · Applied Scientist · Data Scientist Remote preferred; hybrid acceptable in Türkiye and Europe.',
   );
 
   await expect(
@@ -23,6 +23,8 @@ test('homepage renders the exact hero headline and impact metrics', async ({ pag
       exact: true,
     }),
   ).toBeVisible();
+  await expect(page.locator('#hero-roles')).toContainText('ML Engineer');
+  await expect(page.locator('#hero-roles')).toContainText('Data Scientist');
 
   const metrics = page.locator('#impact .impact-strip__value');
   await expect(metrics).toHaveCount(3);
@@ -33,7 +35,7 @@ test('experience entries render scannable evidence lists', async ({ page }) => {
   await page.goto('/');
 
   const experienceBodies = page.locator('#experience .experience__body');
-  await expect(experienceBodies).toHaveCount(11);
+  await expect(experienceBodies).toHaveCount(10);
 
   for (let index = 0; index < await experienceBodies.count(); index += 1) {
     const evidence = experienceBodies.nth(index);
@@ -123,22 +125,13 @@ test('project contribution and outcome details stack vertically', async ({ page 
   expect(detailColumns).toEqual([1, 1, 1, 1, 1, 1]);
 });
 
-test('XPRS project exposes its research poster', async ({ page }) => {
+test('XPRS project keeps the unverified poster unpublished', async ({ page }) => {
   await page.goto('/');
 
   const xprsCard = page.locator('#work').getByRole('article').filter({ hasText: 'XPRS' });
-  const posterAlt = 'XPRS explainable product recommendation system research poster';
-  const poster = xprsCard.getByRole('img', { name: posterAlt, exact: true });
-  const posterLink = xprsCard.getByRole('link', {
-    name: 'Open XPRS research poster at full size',
-    exact: true,
-  });
-
-  await expect(poster).toBeVisible();
-  await expect(poster).toHaveAttribute('src', '/XPRS-poster-en.jpeg');
-  await expect(posterLink).toHaveAttribute('href', '/XPRS-poster-en.jpeg');
-  await expect(posterLink).toHaveAttribute('target', '_blank');
-  await expect(posterLink).toHaveAttribute('rel', 'noopener noreferrer');
+  await expect(xprsCard).toContainText('supported by Wingie Enuygun Group');
+  await expect(xprsCard.locator('.project-card__poster')).toHaveCount(0);
+  expect((await page.request.get('/XPRS-poster-en.jpeg')).status()).toBe(404);
 });
 
 test('homepage exposes the exact resume mailto and public contact links', async ({ page }) => {
@@ -170,33 +163,29 @@ test('homepage exposes the exact resume mailto and public contact links', async 
   }
 });
 
-test('homepage exposes verified Medium links and external attributes', async ({ page }) => {
+test('homepage keeps unverified writing out of the public selection', async ({ page }) => {
   await page.goto('/');
 
-  const writing = page.locator('#writing');
-  const articles = [
-    {
-      title: 'Smarter Search, Deeper Insights: Unlocking Data with Knowledge Graphs',
-      href: 'https://omerahat.medium.com/smarter-search-deeper-insights-unlocking-data-with-knowledge-graphs-70894dbadc1e',
-    },
-    {
-      title: 'Application of Bilinear Interpolation for Image Resizing with MATLAB',
-      href: 'https://omerahat.medium.com/application-of-bilinear-interpolation-for-image-resizing-with-matlab-2b073cfed681',
-    },
-    {
-      title: 'Python ve BeautifulSoup Modülü ile Web Scraping',
-      href: 'https://omerahat.medium.com/python-ve-beautifulsoup-modülü-ile-web-scraping-9d26816dc86d',
-    },
-  ];
+  await expect(page.locator('#writing')).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Writing', exact: true })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Medium', exact: true })).toHaveCount(0);
+  await expect(
+    page.locator('#experience').getByRole('article').filter({ hasText: 'Wingie Enuygun Group' }),
+  ).toHaveCount(0);
 
-  for (const article of articles) {
-    const card = writing.getByRole('article').filter({ hasText: article.title });
-    const link = card.getByRole('link', { name: 'Read on Medium', exact: true });
+  for (const seasonalEntry of [
+    { company: 'ASELSAN', period: 'Spring 2024' },
+    { company: 'YetGen', period: 'Spring 2023' },
+  ]) {
+    const card = page.locator('#experience').getByRole('article').filter({ hasText: seasonalEntry.company });
+    await expect(card).toContainText(seasonalEntry.period);
+    await expect(card.locator('time')).toHaveCount(0);
+    await expect(card.locator('meta[itemprop="endDate"]')).toHaveCount(0);
+  }
 
-    await expect(card).toHaveCount(1);
-    await expect(link).toHaveAttribute('href', article.href);
-    await expect(link).toHaveAttribute('target', '_blank');
-    await expect(link).toHaveAttribute('rel', 'noopener noreferrer');
+  const skills = page.locator('#skills');
+  for (const unsupportedSkill of ['C#', 'JavaScript', 'LightGBM', 'XGBoost', 'SHAP', 'Supabase']) {
+    await expect(skills.getByText(unsupportedSkill, { exact: true })).toHaveCount(0);
   }
 });
 
@@ -205,7 +194,7 @@ test('homepage keeps representative links at or above 44px touch targets', async
   await page.goto('/');
 
   const measuredHeights = await page
-    .locator('.site-header__brand, .site-header__navigation a, #writing .writing__link, .site-footer a')
+    .locator('.site-header__brand, .site-header__navigation a, .site-footer a')
     .evaluateAll((elements) => elements.map((element) => element.getBoundingClientRect().height));
 
   expect(measuredHeights.length).toBeGreaterThan(0);
@@ -247,7 +236,6 @@ test('homepage preserves stable section IDs and matching navigation targets', as
     { id: 'skills', label: 'Skills' },
     { id: 'about', label: 'About' },
     { id: 'community', label: 'Community' },
-    { id: 'writing', label: 'Writing' },
     { id: 'contact', label: 'Contact' },
   ];
 
@@ -257,7 +245,7 @@ test('homepage preserves stable section IDs and matching navigation targets', as
 
   const navigation = page.getByRole('navigation', { name: 'Primary navigation' });
   for (const section of sections.filter(({ label }) =>
-    ['Work', 'Experience', 'About', 'Writing', 'Contact'].includes(label),
+    ['Work', 'Experience', 'About', 'Contact'].includes(label),
   )) {
     await expect(navigation.getByRole('link', { name: section.label, exact: true })).toHaveAttribute(
       'href',
@@ -305,12 +293,10 @@ test('homepage uses desktop, tablet, and mobile grid layouts', async ({ page }) 
 
   expect(await countGridTracks(page, '.hero__grid')).toBe(2);
   expect(await countGridTracks(page, '.projects__grid')).toBe(2);
-  expect(await countGridTracks(page, '.writing__grid')).toBe(3);
 
   await page.setViewportSize({ width: 900, height: 900 });
   expect(await countGridTracks(page, '.hero__grid')).toBe(2);
   expect(await countGridTracks(page, '.projects__grid')).toBe(2);
-  expect(await countGridTracks(page, '.writing__grid')).toBe(1);
 
   await page.setViewportSize({ width: 390, height: 844 });
   expect(await countGridTracks(page, '.hero__grid')).toBe(1);
