@@ -9,6 +9,8 @@ const projectSchema = z.object({
   outcome: z.string(),
   metrics: z.array(z.string()),
   technologies: z.array(z.string()),
+  poster: z.string().optional(),
+  posterAlt: z.string().optional(),
   href: z.url().optional(),
   hrefLabel: z.string().optional(),
   featured: z.boolean(),
