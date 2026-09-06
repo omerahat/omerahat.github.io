@@ -52,6 +52,67 @@ test('experience entries render scannable evidence lists', async ({ page }) => {
   await expect(turknet.locator('strong').filter({ hasText: '60%' })).toBeVisible();
 });
 
+test('ASELSAN shows the representative training topics without instructor names', async ({ page }) => {
+  await page.goto('/');
+
+  const aselsan = page.locator('#experience').getByRole('article').filter({ hasText: 'ASELSAN' });
+  const evidenceItems = aselsan.locator('.experience__body > ul > li');
+  const topics = [
+    'Liderlik ve Yönetim 101',
+    'İletişim 101',
+    'Siber Güvenlik 101',
+    'Finansal Okuryazarlık 101',
+    'İnovasyon 101',
+    'Proje Yönetimi 101',
+    'Dijital Dönüşüm 101',
+    'Sürdürülebilirlik 101',
+  ];
+  const expectedEvidence = [
+    'Selected as the top-performing student from Ankara University for a leadership program with 101 participants.',
+    ...topics,
+  ];
+
+  await expect(aselsan).toHaveCount(1);
+  await expect(evidenceItems).toHaveCount(9);
+  await expect(evidenceItems).toHaveText(expectedEvidence);
+});
+
+test('homepage repeats the same 11 community records in Community and Education', async ({ page }) => {
+  await page.goto('/');
+
+  const communityEntries = [
+    ['Erasmus Student Network', 'ITcom Committee Member', 'May 2026 - Present'],
+    ['Kodluyoruz', 'Technical Assistant & Network Representative', 'March 2023 - May 2025'],
+    ['ACM Ankara', 'Chairman of the Board', 'November 2023 - December 2024'],
+    ['Erasmus Student Network Türkiye', 'Webteam Committee Member', 'June 2026 - Present'],
+    ['BBT Ankara', 'Founder & President', 'November 2023 - December 2024'],
+    [
+      'HUAWEI Student Developers (HSD) Türkiye',
+      'Vice President & Technical Team Leader',
+      'September 2022 - August 2023',
+    ],
+    ['Erasmus Student Network Ankara University', 'Volunteer Staff', 'September 2024 - Present'],
+    ['Aspire Institute', 'Member', 'July 2023 - October 2023'],
+    ['Yetkin Gençler', 'Trainee', 'April 2023 - June 2023'],
+    ['Developer MultiGroup', 'Pioneer Member', 'July 2025 - April 2026'],
+    ['Erasmus Student Network Ankara University', 'Member', 'September 2024 - July 2026'],
+  ];
+  const communityCards = page.locator('#community .community__grid > li');
+  const educationEntries = page.locator('#about .about__community > li');
+
+  await expect(communityCards).toHaveCount(11);
+  await expect(educationEntries).toHaveCount(11);
+  await expect(page.locator('#about .about__capstone')).toContainText('XPRS');
+
+  for (let index = 0; index < communityEntries.length; index += 1) {
+    const [organization, role, period] = communityEntries[index];
+    for (const value of [organization, role, period]) {
+      await expect(communityCards.nth(index)).toContainText(value);
+      await expect(educationEntries.nth(index)).toContainText(value);
+    }
+  }
+});
+
 test('homepage renders all featured projects and verified project links', async ({ page }) => {
   await page.goto('/');
 

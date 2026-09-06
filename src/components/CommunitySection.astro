@@ -19,7 +19,6 @@ import SectionHeading from './SectionHeading.astro';
             <p class="eyebrow">{entry.organization}</p>
             <h3>{entry.role}</h3>
             <p class="community__period">{entry.period}</p>
-            {entry.detail && <p class="community__detail">{entry.detail}</p>}
           </article>
         </li>
       ))}
@@ -76,12 +75,6 @@ import SectionHeading from './SectionHeading.astro';
     color: var(--color-orange);
     font-size: 0.88rem;
     font-weight: 800;
-  }
-
-  .community__detail {
-    margin-top: 0.3rem;
-    color: var(--color-muted);
-    font-size: 0.92rem;
   }
 
   @media (max-width: 44rem) {
