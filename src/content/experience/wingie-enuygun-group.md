@@ -1,9 +1,10 @@
 ---
 company: "Wingie Enuygun Group"
 role: "Graduation Project — XPRS"
-period: "October 2025 - Present"
+period: "October 2025 - September 2026"
 startDate: "2025-10-01"
-current: true
+endDate: "2026-09-30"
+current: false
 focus:
   - "Explainable product recommendation"
   - "Deep learning"

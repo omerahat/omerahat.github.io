@@ -394,6 +394,7 @@ test('experience timeline exposes machine-readable start and end dates', async (
   const experience = page.locator('#experience');
   const turknet = experience.getByRole('article').filter({ hasText: 'Turknet' });
   const superhood = experience.getByRole('article').filter({ hasText: 'Superhood Oy' });
+  const wingie = experience.getByRole('article').filter({ hasText: 'Wingie Enuygun Group' });
 
   await expect(turknet.locator('time')).toHaveAttribute('datetime', '2026-04-01');
   await expect(turknet.locator('time')).toHaveText('April 2026 - Present');
@@ -402,4 +403,11 @@ test('experience timeline exposes machine-readable start and end dates', async (
     'content',
     '2025-09-30',
   );
+  await expect(wingie.locator('time')).toHaveAttribute('datetime', '2025-10-01');
+  await expect(wingie.locator('time')).toHaveText('October 2025 - September 2026');
+  await expect(wingie.locator('meta[itemprop="endDate"]')).toHaveAttribute(
+    'content',
+    '2026-09-30',
+  );
+  await expect(wingie.locator('.experience__current')).toHaveCount(0);
 });
